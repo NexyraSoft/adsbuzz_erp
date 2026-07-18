@@ -639,22 +639,44 @@ export default function SalesView({
                   {/* Real-time calculated amounts (overridable BDT payment) */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">BDT Amount Paid (Auto-calculated)</label>
+                      <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">BDT Amount to pay</label>
                       <div className="relative">
                         <input
-                          id="checkout-paid-bdt"
+                          id="checkout-total-bdt"
                           type="number"
                           required
                           disabled
                           readOnly
                           className="w-full text-xs pl-8 pr-4 py-2.5 border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500 rounded-xl focus:outline-none font-bold cursor-not-allowed"
-                          value={paidBDT || ''}
+                          value={totalBDT || ''}
                         />
                         <span className="absolute left-3 top-3 text-slate-400 text-xs font-bold">৳</span>
                       </div>
-                      <span className="text-[10px] text-slate-400 mt-1 block">Full subtotal BDT: ৳{totalBDT.toLocaleString()}</span>
                     </div>
 
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">BDT Amount Paid</label>
+                      <div className="relative">
+                        <input
+                          id="checkout-paid-bdt"
+                          type="number"
+                          required
+                          min={0}
+                          className="w-full text-xs pl-8 pr-4 py-2.5 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 rounded-xl focus:outline-none focus:ring-1 focus:ring-blue-500 dark:text-slate-100 font-bold"
+                          value={paidBDT || ''}
+                          onChange={(e) => setPaidBDT(e.target.value === '' ? 0 : Number(e.target.value))}
+                        />
+                        <span className="absolute left-3 top-3 text-slate-400 text-xs font-bold">৳</span>
+                      </div>
+                      {dueBDT > 0 ? (
+                        <span className="text-[10px] text-red-500 mt-1 block">Remaining Due: ৳{dueBDT.toLocaleString()}</span>
+                      ) : (
+                        <span className="text-[10px] text-emerald-600 mt-1 block">Full subtotal BDT: ৳{totalBDT.toLocaleString()}</span>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Payment Channel</label>
                       <select
@@ -668,10 +690,7 @@ export default function SalesView({
                         ))}
                       </select>
                     </div>
-                  </div>
 
-                  {/* Statuses selection */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Topup Execution Status</label>
                       <select
@@ -685,7 +704,9 @@ export default function SalesView({
                         <option value="Failed">Failed / Declined</option>
                       </select>
                     </div>
+                  </div>
 
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Payment Verification</label>
                       <select
@@ -699,18 +720,18 @@ export default function SalesView({
                         <option value="Rejected">Rejected</option>
                       </select>
                     </div>
-                  </div>
 
-                  <div>
-                    <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Auditor Notes</label>
-                    <input
-                      id="checkout-note"
-                      type="text"
-                      placeholder="e.g. Approved via EBL App transfer ref #90123"
-                      className="w-full text-xs p-2.5 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 rounded-xl focus:outline-none focus:ring-1 focus:ring-blue-500 dark:text-slate-100"
-                      value={noteText}
-                      onChange={(e) => setNoteText(e.target.value)}
-                    />
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Auditor Notes</label>
+                      <input
+                        id="checkout-note"
+                        type="text"
+                        placeholder="e.g. Approved via EBL App transfer ref #90123"
+                        className="w-full text-xs p-2.5 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 rounded-xl focus:outline-none focus:ring-1 focus:ring-blue-500 dark:text-slate-100"
+                        value={noteText}
+                        onChange={(e) => setNoteText(e.target.value)}
+                      />
+                    </div>
                   </div>
 
                 </div>

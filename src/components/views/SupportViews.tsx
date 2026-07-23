@@ -1892,16 +1892,73 @@ export function ReportsView({ invoices, onTriggerExport }: ReportsViewProps) {
     return matchesPlatform && matchesSearch;
   });
 
-  // ===== Shared classes to mimic the image (yellow / dark blue / green / red) =====
-  const yellowHeader = "bg-[#FFC83D] text-slate-900 border border-[#FFC83D] text-center font-bold text-[11px] py-1.5";
-  const darkBlueHeader = "bg-[#1F3A5F] text-white text-center font-extrabold text-[11px] py-1.5 border border-[#1F3A5F]";
-  const tableCell = "border border-slate-300 dark:border-slate-700 px-2 py-1 text-[11px] text-right text-slate-800 dark:text-slate-100 bg-white dark:bg-slate-900";
-  const tableLabel = "border border-slate-300 dark:border-slate-700 px-2 py-1 text-[11px] font-semibold text-slate-800 dark:text-slate-100 bg-white dark:bg-slate-900";
-  const totalRowCell = "border border-slate-300 dark:border-slate-700 px-2 py-1 text-[11px] text-right font-extrabold text-white bg-[#1F3A5F]";
-  const totalRowLabel = "border border-slate-300 dark:border-slate-700 px-2 py-1 text-[11px] font-extrabold text-white bg-[#1F3A5F]";
-  const approvedBg = "border border-slate-300 dark:border-slate-700 px-2 py-1 text-[11px] font-semibold text-emerald-800 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/40";
-  const declinedBg = "border border-slate-300 dark:border-slate-700 px-2 py-1 text-[11px] font-semibold text-rose-800 dark:text-rose-300 bg-rose-50 dark:bg-rose-950/40";
-  const neutralBg = "border border-slate-300 dark:border-slate-700 px-2 py-1 text-[11px] font-semibold text-slate-800 dark:text-slate-200 bg-slate-50 dark:bg-slate-900";
+  const formatUSD = (value: number) => `USD ${value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+  const formatBDT = (value: number) => `BDT ${value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+  const percentOf = (value: number, total: number) => total > 0 ? Math.round((value / total) * 100) : 0;
+
+  const statementMetrics = [
+    {
+      title: 'Total Sell',
+      icon: DollarSign,
+      background: '#FFF7ED',
+      border: '#FBD9B9',
+      iconBackground: '#FFE8D4',
+      values: [
+        { label: 'Total USD', value: formatUSD(totalSellUSD) },
+        { label: 'Total BDT', value: formatBDT(totalSellBDT) },
+      ],
+    },
+    {
+      title: 'Average Sell',
+      icon: TrendingUp,
+      background: '#F0F7FF',
+      border: '#CFE1F5',
+      iconBackground: '#DCEBFA',
+      values: [
+        { label: 'Amount USD', value: formatUSD(avgSellUSD) },
+        { label: 'Amount BDT', value: formatBDT(avgSellBDT) },
+      ],
+    },
+    {
+      title: 'Ads Topup',
+      icon: BarChart2,
+      background: '#F1FBF5',
+      border: '#CFEBDD',
+      iconBackground: '#DAF5E5',
+      values: [
+        { label: 'Topup USD', value: formatUSD(adTopupUSD) },
+        { label: 'Topup BDT', value: formatBDT(adTopupBDT) },
+      ],
+    },
+    {
+      title: 'Avg Per USD Sale',
+      icon: CreditCard,
+      background: '#FFFBEA',
+      border: '#F6E7A8',
+      iconBackground: '#FEF3C7',
+      values: [
+        { label: 'BDT Rate', value: formatBDT(avgPerDollarBDT) },
+      ],
+    },
+  ];
+
+  const approvalRows = [
+    { label: 'Total Requests', count: approvalTotalCount, background: '#F4F8FC', border: '#D8E6F3', bar: '#BFD7EA' },
+    { label: 'Approved', count: approvalApprovedCount, background: '#F1FBF5', border: '#CFEBDD', bar: '#A7E5C0' },
+    { label: 'Declined', count: approvalDeclinedCount, background: '#FFF1F2', border: '#F8D6DC', bar: '#F8B4BE' },
+  ];
+
+  const paymentRows = [
+    { label: 'Paid', count: paidCount, background: '#F1FBF5', border: '#CFEBDD', bar: '#A7E5C0' },
+    { label: 'Due', count: dueCount, background: '#FFF7ED', border: '#FBD9B9', bar: '#FDBA74' },
+    { label: 'Partial Paid', count: partialPaidCount, background: '#F0F7FF', border: '#CFE1F5', bar: '#B9D7F0' },
+  ];
+
+  const companyRows = [
+    { label: 'Office Expense', value: officeExpenseBDT },
+    { label: 'Vendor Payment', value: vendorPaymentBDT },
+    { label: 'Refund', value: refundBDT },
+  ];
 
   return (
     <div className="space-y-6 animate-fade-in" id="reports-view">
@@ -1926,157 +1983,136 @@ export function ReportsView({ invoices, onTriggerExport }: ReportsViewProps) {
         </div>
       </div>
 
-      {/* ===== Six Function Report Tables ===== */}
-      <div className="max-w-2xl space-y-3" id="reports-six-functions">
-        {/* 1) TOTAL SELL */}
-        <table className="w-full border-collapse">
-          <thead>
-            <tr>
-              <th colSpan={2} className={yellowHeader}>TOTAL SELL</th>
-            </tr>
-            <tr>
-              <th className={darkBlueHeader}>Total Amount USD</th>
-              <th className={darkBlueHeader}>Total Amount BDT</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td className={tableCell}>${totalSellUSD.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
-              <td className={tableCell}>৳{totalSellBDT.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
-            </tr>
-          </tbody>
-        </table>
+      <div className="max-w-6xl space-y-4" id="reports-six-functions">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3">
+          {statementMetrics.map(metric => {
+            const Icon = metric.icon;
+            return (
+              <div
+                key={metric.title}
+                className="rounded-2xl border p-4 shadow-[0_12px_30px_rgba(12,66,117,0.07)]"
+                style={{ backgroundColor: metric.background, borderColor: metric.border }}
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <p className="text-[11px] uppercase">{metric.title}</p>
+                    <p className="mt-1 text-[10px] opacity-70">Monthly statement</p>
+                  </div>
+                  <span
+                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl"
+                    style={{ backgroundColor: metric.iconBackground }}
+                  >
+                    <Icon size={16} strokeWidth={1.8} />
+                  </span>
+                </div>
 
-        {/* 2) AVERAGE SELL */}
-        <table className="w-full border-collapse">
-          <thead>
-            <tr>
-              <th colSpan={2} className={yellowHeader}>AVERAGE SELL</th>
-            </tr>
-            <tr>
-              <th className={darkBlueHeader}>Amount USD</th>
-              <th className={darkBlueHeader}>Amount BDT</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td className={tableCell}>${avgSellUSD.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
-              <td className={tableCell}>৳{avgSellBDT.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
-            </tr>
-          </tbody>
-        </table>
+                <div className="mt-4 space-y-2">
+                  {metric.values.map(item => (
+                    <div key={item.label} className="flex items-end justify-between gap-3">
+                      <span className="text-[10px] uppercase opacity-70">{item.label}</span>
+                      <span className="text-right text-[15px] leading-tight sm:text-base">{item.value}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+        </div>
 
-        {/* 3) ADS TOPUP */}
-        <table className="w-full border-collapse">
-          <thead>
-            <tr>
-              <th colSpan={2} className={darkBlueHeader}>ADS TOPUP</th>
-            </tr>
-            <tr>
-              <th className={yellowHeader + " text-slate-900"}>Total Amount USD</th>
-              <th className={yellowHeader + " text-slate-900"}>Total Amount BDT</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td className={tableCell}>${adTopupUSD.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
-              <td className={tableCell}>৳{adTopupBDT.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
-            </tr>
-          </tbody>
-        </table>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div className="rounded-2xl border border-[#D8E6F3] bg-[#F7FBFF] p-4 shadow-[0_12px_30px_rgba(12,66,117,0.06)]">
+            <div className="flex items-center justify-between gap-3">
+              <div>
+                <h3 className="text-sm">Payment Approval Status</h3>
+                <p className="mt-1 text-[11px] opacity-70">Approval flow for selected month</p>
+              </div>
+              <Check size={17} strokeWidth={1.8} />
+            </div>
 
-        {/* 4) AVG Per $ Sale IN BDT */}
-        <table className="w-full border-collapse">
-          <thead>
-            <tr>
-              <th className={darkBlueHeader + " text-base"}>AVG Per $ Sale IN BDT</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td className="border border-slate-300 dark:border-slate-700 bg-[#FFC83D] text-center text-2xl font-black text-slate-900 py-3">
-                {avgPerDollarBDT.toFixed(2)}
-              </td>
-            </tr>
-          </tbody>
-        </table>
+            <div className="mt-4 space-y-2.5">
+              {approvalRows.map(row => {
+                const progress = percentOf(row.count, Math.max(approvalTotalCount, 1));
+                return (
+                  <div
+                    key={row.label}
+                    className="rounded-xl border px-3 py-2.5"
+                    style={{ backgroundColor: row.background, borderColor: row.border }}
+                  >
+                    <div className="flex items-center justify-between gap-3 text-xs">
+                      <span>{row.label}</span>
+                      <span>{row.count.toLocaleString()}</span>
+                    </div>
+                    <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/80">
+                      <div
+                        className="h-full rounded-full"
+                        style={{ width: `${row.count > 0 ? Math.max(progress, 5) : 0}%`, backgroundColor: row.bar }}
+                      />
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
 
-        {/* 5) Payment Approval Status */}
-        <table className="w-full border-collapse">
-          <thead>
-            <tr>
-              <th colSpan={2} className={yellowHeader}>Payment Approval Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td className={neutralBg}>Total</td>
-              <td className={tableCell}>{approvalTotalCount.toLocaleString()}</td>
-            </tr>
-            <tr>
-              <td className={approvedBg}>Approved</td>
-              <td className={approvedBg + " text-right"}>{approvalApprovedCount.toLocaleString()}</td>
-            </tr>
-            <tr>
-              <td className={declinedBg}>Decline</td>
-              <td className={declinedBg + " text-right"}>{approvalDeclinedCount.toLocaleString()}</td>
-            </tr>
-          </tbody>
-        </table>
+          <div className="rounded-2xl border border-[#D8E6F3] bg-[#F7FBFF] p-4 shadow-[0_12px_30px_rgba(12,66,117,0.06)]">
+            <div className="flex items-center justify-between gap-3">
+              <div>
+                <h3 className="text-sm">Payment Status</h3>
+                <p className="mt-1 text-[11px] opacity-70">Collection state across invoices</p>
+              </div>
+              <CreditCard size={17} strokeWidth={1.8} />
+            </div>
 
-        {/* 6) Payment Status */}
-        <table className="w-full border-collapse">
-          <thead>
-            <tr>
-              <th colSpan={2} className={yellowHeader}>Payment Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td className={tableLabel}>Paid</td>
-              <td className={tableCell}>{paidCount.toLocaleString()}</td>
-            </tr>
-            <tr>
-              <td className={tableLabel}>Due</td>
-              <td className={tableCell}>{dueCount.toLocaleString()}</td>
-            </tr>
-            <tr>
-              <td className={tableLabel}>Partial Paid</td>
-              <td className={tableCell}>{partialPaidCount.toLocaleString()}</td>
-            </tr>
-          </tbody>
-        </table>
+            <div className="mt-4 space-y-2.5">
+              {paymentRows.map(row => {
+                const progress = percentOf(row.count, Math.max(approvalTotalCount, 1));
+                return (
+                  <div
+                    key={row.label}
+                    className="rounded-xl border px-3 py-2.5"
+                    style={{ backgroundColor: row.background, borderColor: row.border }}
+                  >
+                    <div className="flex items-center justify-between gap-3 text-xs">
+                      <span>{row.label}</span>
+                      <span>{row.count.toLocaleString()}</span>
+                    </div>
+                    <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/80">
+                      <div
+                        className="h-full rounded-full"
+                        style={{ width: `${row.count > 0 ? Math.max(progress, 5) : 0}%`, backgroundColor: row.bar }}
+                      />
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
 
-        {/* 7) Company Summary */}
-        <table className="w-full border-collapse">
-          <thead>
-            <tr>
-              <th colSpan={2} className={darkBlueHeader}>Company Summary</th>
-            </tr>
-            <tr>
-              <th className={yellowHeader + " text-slate-900"}>Name</th>
-              <th className={yellowHeader + " text-slate-900"}>Amount BDT</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td className={tableLabel}>Office Expense</td>
-              <td className={tableCell}>৳{officeExpenseBDT.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
-            </tr>
-            <tr>
-              <td className={tableLabel}>Vendor Payment</td>
-              <td className={tableCell}>৳{vendorPaymentBDT.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
-            </tr>
-            <tr>
-              <td className={tableLabel}>Refund</td>
-              <td className={tableCell}>৳{refundBDT.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
-            </tr>
-            <tr>
-              <td className={totalRowLabel}>Total</td>
-              <td className={totalRowCell}>৳{totalCompanyBDT.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
-            </tr>
-          </tbody>
-        </table>
+        <div className="rounded-2xl border border-[#D8E6F3] bg-[#FCFEFF] p-4 shadow-[0_12px_30px_rgba(12,66,117,0.06)]">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+            <div>
+              <h3 className="text-sm">Company Summary</h3>
+              <p className="mt-1 text-[11px] opacity-70">Expense and vendor ledger in BDT</p>
+            </div>
+            <span className="w-fit rounded-full border border-[#FBD9B9] bg-[#FFF7ED] px-3 py-1 text-[11px]">
+              Total {formatBDT(totalCompanyBDT)}
+            </span>
+          </div>
+
+          <div className="mt-4 overflow-hidden rounded-xl border border-[#D8E6F3] bg-white/75">
+            {companyRows.map(row => (
+              <div key={row.label} className="flex items-center justify-between gap-4 border-b border-[#E6EEF6] px-3 py-3 last:border-b-0">
+                <span className="text-xs">{row.label}</span>
+                <span className="text-right text-xs">{formatBDT(row.value)}</span>
+              </div>
+            ))}
+            <div className="flex items-center justify-between gap-4 bg-[#F0F7FF] px-3 py-3">
+              <span className="text-xs">Total</span>
+              <span className="text-right text-sm">{formatBDT(totalCompanyBDT)}</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-5 max-w-4xl">

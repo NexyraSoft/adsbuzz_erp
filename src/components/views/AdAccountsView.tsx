@@ -82,12 +82,32 @@ export default function AdAccountsView({
     setNewSeriesId('');
   }, [newPlatform]);
 
+  const isProblemAccountStatus = (status: AdAccount['accountStatus']) => (
+    status === 'Need Support' ||
+    status === 'Terminated' ||
+    status === 'Restricted' ||
+    status === 'Disabled' ||
+    status === 'Disable'
+  );
+
+  const getEffectiveAccountStatus = (acc: AdAccount): AdAccount['accountStatus'] => {
+    if (isProblemAccountStatus(acc.accountStatus)) return acc.accountStatus;
+    return acc.assignedCustomer || acc.accountStatus === 'Active' ? 'Sold' : acc.accountStatus;
+  };
+
+  const getAccountStatusTextClass = (status: AdAccount['accountStatus']) => {
+    if (status === 'Available' || status === 'Sold') return 'account-status-success';
+    if (isProblemAccountStatus(status)) return 'account-status-danger';
+    return 'text-[#154A7D] dark:text-[#154A7D]';
+  };
+
   const filteredAccounts = adAccounts.filter(acc => {
+    const effectiveStatus = getEffectiveAccountStatus(acc);
     const matchesSearch = acc.adAccountName.toLowerCase().includes(searchTerm.toLowerCase()) || 
                           acc.adAccountId.includes(searchTerm) ||
                           acc.userGroupCode.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesPlatform = platformFilter === 'All' ? true : acc.platform === platformFilter;
-    const matchesStatus = statusFilter === 'All' ? true : acc.accountStatus === statusFilter;
+    const matchesStatus = statusFilter === 'All' ? true : effectiveStatus === statusFilter;
     const matchesAssignment = assignmentFilter === 'All' 
       ? true 
       : assignmentFilter === 'Assigned' 
@@ -164,7 +184,10 @@ export default function AdAccountsView({
   };
 
   const handleOpenEditModal = (account: AdAccount) => {
-    setEditAccountData({ ...account });
+    setEditAccountData({
+      ...account,
+      accountStatus: account.accountStatus === 'Active' ? 'Sold' : account.accountStatus,
+    });
     setShowEditModal(true);
   };
 
@@ -182,11 +205,10 @@ export default function AdAccountsView({
   };
 
   const totalAdAccounts = adAccounts.length;
-  const soldAccounts = adAccounts.filter(acc => acc.accountStatus === 'Sold' || acc.accountStatus === 'Active' || !!acc.assignedCustomer).length;
-  const needSupportAccounts = adAccounts.filter(acc => acc.accountStatus === 'Need Support' || acc.accountStatus === 'Restricted' || acc.accountStatus === 'Disabled' || acc.accountStatus === 'Disable' || acc.accountStatus === 'Terminated').length;
+  const soldAccounts = adAccounts.filter(acc => getEffectiveAccountStatus(acc) === 'Sold').length;
+  const needSupportAccounts = adAccounts.filter(acc => isProblemAccountStatus(getEffectiveAccountStatus(acc))).length;
   const availableAccounts = adAccounts.filter(acc => 
-    acc.accountStatus === 'Available' || 
-    (!acc.assignedCustomer && acc.accountStatus !== 'Sold' && acc.accountStatus !== 'Active' && acc.accountStatus !== 'Need Support' && acc.accountStatus !== 'Restricted' && acc.accountStatus !== 'Disabled' && acc.accountStatus !== 'Disable' && acc.accountStatus !== 'Terminated')
+    getEffectiveAccountStatus(acc) === 'Available'
   ).length;
 
   return (
@@ -277,10 +299,10 @@ export default function AdAccountsView({
               onChange={(e) => setStatusFilter(e.target.value as any)}
             >
               <option value="All">All Statuses</option>
-              <option value="Active">Active</option>
               <option value="Sold">Sold</option>
               <option value="Disable">Disable</option>
               <option value="Need Support">Need Support</option>
+              <option value="Terminated">Terminated</option>
               <option value="Available">Available</option>
             </select>
 
@@ -389,6 +411,7 @@ export default function AdAccountsView({
             <tbody className="divide-y divide-slate-100 dark:divide-slate-800/50">
               {filteredAccounts.map((acc) => {
                 const isChecked = selectedAccountIds.includes(acc.adAccountId);
+                const effectiveStatus = getEffectiveAccountStatus(acc);
                 return (
                   <tr key={acc.adAccountId} className={`hover:bg-slate-50/50 dark:hover:bg-slate-800/10 transition-colors ${
                     isChecked ? 'bg-blue-50/10 dark:bg-blue-950/5' : ''
@@ -457,14 +480,8 @@ export default function AdAccountsView({
                       )}
                     </td>
                     <td className="py-3.5 text-center font-bold text-xs">
-                      <span className={
-                        acc.accountStatus === 'Active' || acc.accountStatus === 'Available'
-                          ? 'text-emerald-600 dark:text-emerald-400' 
-                          : acc.accountStatus === 'Need Support'
-                          ? 'text-amber-600 dark:text-amber-400'
-                          : 'text-rose-600 dark:text-rose-400'
-                      }>
-                        {acc.accountStatus}
+                      <span className={getAccountStatusTextClass(effectiveStatus)}>
+                        {effectiveStatus}
                       </span>
                     </td>
                     <td className="py-3.5 text-center">
@@ -478,13 +495,13 @@ export default function AdAccountsView({
                         <select
                           id={`status-select-${acc.adAccountId}`}
                           className="text-[10px] bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-1.5 py-1 focus:outline-none focus:ring-1 text-slate-700 dark:text-slate-200 font-medium"
-                          value={acc.accountStatus}
+                          value={acc.accountStatus === 'Active' ? 'Sold' : acc.accountStatus}
                           onChange={(e) => onUpdateAccountStatus(acc.adAccountId, e.target.value as any)}
                         >
-                          <option value="Active">Active</option>
                           <option value="Sold">Sold</option>
                           <option value="Disable">Disable</option>
                           <option value="Need Support">Need Support</option>
+                          <option value="Terminated">Terminated</option>
                           <option value="Available">Available</option>
                         </select>
                       </div>
@@ -640,10 +657,10 @@ export default function AdAccountsView({
                     value={newAccountStatus}
                     onChange={(e) => setNewAccountStatus(e.target.value as any)}
                   >
-                    <option value="Active">Active</option>
                     <option value="Sold">Sold</option>
                     <option value="Disable">Disable</option>
                     <option value="Need Support">Need Support</option>
+                    <option value="Terminated">Terminated</option>
                     <option value="Available">Available</option>
                   </select>
                 </div>
@@ -865,10 +882,10 @@ export default function AdAccountsView({
                     value={editAccountData.accountStatus}
                     onChange={(e) => setEditAccountData({ ...editAccountData, accountStatus: e.target.value as any })}
                   >
-                    <option value="Active">Active</option>
                     <option value="Sold">Sold</option>
                     <option value="Disable">Disable</option>
                     <option value="Need Support">Need Support</option>
+                    <option value="Terminated">Terminated</option>
                     <option value="Available">Available</option>
                   </select>
                 </div>

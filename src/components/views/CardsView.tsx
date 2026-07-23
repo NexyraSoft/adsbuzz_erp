@@ -10,19 +10,17 @@ import { BillingCard, AdAccount } from '../../types';
 import { PlatformText } from '../PlatformText';
 import StatCard from '../StatCard';
 
-// Card-type brand icon helper (visually distinguishes Visa / Mastercard / Union Pay)
+// Card-type brand icon helper (visually distinguishes Visa / Mastercard / Union Pay / Amex)
 const getCardTypeIcon = (cardType?: string) => {
   const type = (cardType || '').toLowerCase();
   if (type.includes('master')) {
     return {
       label: 'Mastercard',
-      // two overlapping circles in Mastercard red & yellow
+      // two solid circles side-by-side (no blend modes — clean on any background)
       render: () => (
-        <div className="flex items-center justify-center w-9 h-7" title="Mastercard">
-          <div className="relative w-7 h-7">
-            <div className="absolute left-0 top-0 w-4 h-4 rounded-full bg-[#EB001B] opacity-90" />
-            <div className="absolute right-0 top-0 w-4 h-4 rounded-full bg-[#F79E1B] opacity-90 mix-blend-multiply" />
-          </div>
+        <div className="flex items-center gap-1.5 px-2 py-1 rounded-md bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-xs" title="Mastercard">
+          <div className="w-3.5 h-3.5 rounded-full bg-[#EB001B]" />
+          <div className="w-3.5 h-3.5 rounded-full bg-[#F79E1B] -ml-2.5" />
         </div>
       )
     };
@@ -32,7 +30,7 @@ const getCardTypeIcon = (cardType?: string) => {
       label: 'Union Pay',
       render: () => (
         <div
-          className="flex items-center justify-center w-9 h-7 rounded-md bg-gradient-to-r from-[#003E7E] via-[#E21836] to-[#0072CE] text-white text-[8px] font-black tracking-tight shadow-sm"
+          className="flex items-center justify-center w-14 h-6 rounded-md bg-gradient-to-r from-[#003E7E] via-[#E21836] to-[#0072CE] text-white text-[8px] font-black tracking-tight shadow-xs"
           title="Union Pay"
         >
           UnionPay
@@ -45,7 +43,7 @@ const getCardTypeIcon = (cardType?: string) => {
       label: 'American Express',
       render: () => (
         <div
-          className="flex items-center justify-center w-9 h-7 rounded-md bg-[#2E77BC] text-white text-[8px] font-black tracking-tight shadow-sm"
+          className="flex items-center justify-center w-12 h-6 rounded-md bg-[#2E77BC] text-white text-[9px] font-black tracking-tight shadow-xs"
           title="American Express"
         >
           AMEX
@@ -58,10 +56,10 @@ const getCardTypeIcon = (cardType?: string) => {
     label: 'Visa',
     render: () => (
       <div
-        className="flex items-center justify-center w-9 h-7 rounded-md bg-[#1A1F71] text-white italic font-black text-[10px] tracking-wider shadow-sm"
+        className="flex items-center justify-center w-14 h-7 rounded-md bg-[#1A1F71] shadow-xs"
         title="Visa"
       >
-        VISA
+        <span className="font-black text-white text-[12px] tracking-wider" style={{ fontStyle: 'italic', fontFamily: 'Arial Black, sans-serif' }}>VISA</span>
       </div>
     )
   };

@@ -326,6 +326,9 @@ export default function SalesView({
 
     onSubmitSale({
       platform,
+      customerId: selectedCustomerId,
+      groupId: groupIdCode,
+      serviceType,
       adAccountName: activeAccount?.adAccountName || "Unknown Account",
       adAccountId: selectedAccountId,
       dollarRate,

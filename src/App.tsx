@@ -176,6 +176,15 @@ export default function App() {
     // Update invoices ledger
     setInvoices(prev => [newInvoice, ...prev]);
 
+    // Mark the selected ad account as sold to this customer after checkout.
+    if (saleData.adAccountId && saleData.customerId) {
+      setAdAccounts(prev => prev.map(acc => (
+        acc.adAccountId === saleData.adAccountId
+          ? { ...acc, accountStatus: 'Sold', assignedCustomer: saleData.customerId }
+          : acc
+      )));
+    }
+
     // Update customer wallet balances & activity metrics
     setCustomers(prev => prev.map(cust => {
       if (cust.id === saleData.customerId) {

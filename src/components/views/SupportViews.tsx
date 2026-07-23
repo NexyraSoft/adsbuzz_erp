@@ -164,29 +164,29 @@ export function InvoicesView({ invoices, customers, onUpdateInvoice }: InvoicesV
         {/* Daily Overview Card */}
         <div className="bg-[#F1FBF5] dark:bg-[#F1FBF5] p-5 rounded-2xl border border-[#CFEBDD] dark:border-[#CFEBDD] space-y-3">
           <div className="flex justify-between items-center border-b border-[#CFEBDD] dark:border-[#CFEBDD] pb-2">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-[#0c4275] dark:text-[#0c4275] flex items-center gap-1.5">
-              <Clock size={14} className="text-[#154A7D] dark:text-[#154A7D]" />
+            <h3 className="text-xs font-bold uppercase tracking-wider text-[#0a5c3a] dark:text-[#0a5c3a] flex items-center gap-1.5">
+              <Clock size={14} className="text-[#0a5c3a] dark:text-[#0a5c3a]" />
               Daily ({activeTodayStr})
             </h3>
-            <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-[#FCFEFF] dark:bg-[#FCFEFF] text-[#0c4275] dark:text-[#0c4275] border border-[#CFEBDD] dark:border-[#CFEBDD]">
+            <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-[#FCFEFF] dark:bg-[#FCFEFF] text-[#0a5c3a] dark:text-[#0a5c3a] border border-[#CFEBDD] dark:border-[#CFEBDD]">
               Today Summary
             </span>
           </div>
           <div className="grid grid-cols-3 gap-3 pt-1">
-            <div className="bg-[#FCFEFF] dark:bg-[#FCFEFF] p-3.5 rounded-xl border border-[#D8E6F3] dark:border-[#D8E6F3] shadow-xs">
-              <p className="text-[10px] font-bold text-[#0c4275]/75 dark:text-[#0c4275]/75 uppercase tracking-wide">Total Invoices</p>
-              <p className="text-xl font-black text-[#0c4275] dark:text-[#0c4275] mt-1">{dailyInvoicesCount}</p>
-              <p className="text-[9px] font-semibold text-[#0c4275]/65 dark:text-[#0c4275]/65">Today records</p>
+            <div className="bg-[#FCFEFF] dark:bg-[#FCFEFF] p-3.5 rounded-xl border border-[#CFEBDD] dark:border-[#CFEBDD] shadow-xs">
+              <p className="text-[10px] font-bold text-[#0a5c3a]/75 dark:text-[#0a5c3a]/75 uppercase tracking-wide">Total Invoices</p>
+              <p className="text-xl font-black text-[#0a5c3a] dark:text-[#0a5c3a] mt-1">{dailyInvoicesCount}</p>
+              <p className="text-[9px] font-semibold text-[#0a5c3a]/65 dark:text-[#0a5c3a]/65">Today records</p>
             </div>
-            <div className="bg-[#FCFEFF] dark:bg-[#FCFEFF] p-3.5 rounded-xl border border-[#D8E6F3] dark:border-[#D8E6F3] shadow-xs">
-              <p className="text-[10px] font-bold text-[#0c4275]/75 dark:text-[#0c4275]/75 uppercase tracking-wide">Total Sell (USD &amp; BDT)</p>
-              <p className="text-sm font-black text-[#0c4275] dark:text-[#0c4275] mt-1">${dailyUSD.toLocaleString()}</p>
-              <p className="text-[10px] font-bold text-[#0c4275] dark:text-[#0c4275]">৳{dailyBDT.toLocaleString()}</p>
+            <div className="bg-[#FCFEFF] dark:bg-[#FCFEFF] p-3.5 rounded-xl border border-[#CFEBDD] dark:border-[#CFEBDD] shadow-xs">
+              <p className="text-[10px] font-bold text-[#0a5c3a]/75 dark:text-[#0a5c3a]/75 uppercase tracking-wide">Total Sell (USD &amp; BDT)</p>
+              <p className="text-sm font-black text-[#0a5c3a] dark:text-[#0a5c3a] mt-1">${dailyUSD.toLocaleString()}</p>
+              <p className="text-[10px] font-bold text-[#0a5c3a] dark:text-[#0a5c3a]">৳{dailyBDT.toLocaleString()}</p>
             </div>
-            <div className="bg-[#FCFEFF] dark:bg-[#FCFEFF] p-3.5 rounded-xl border border-[#D8E6F3] dark:border-[#D8E6F3] shadow-xs">
-              <p className="text-[10px] font-bold text-[#0c4275]/75 dark:text-[#0c4275]/75 uppercase tracking-wide">Total Others Service Sell</p>
-              <p className="text-sm font-black text-[#0c4275] dark:text-[#0c4275] mt-1">${dailyOthersUSD.toLocaleString()}</p>
-              <p className="text-[10px] font-bold text-[#0c4275] dark:text-[#0c4275]">৳{dailyOthersBDT.toLocaleString()}</p>
+            <div className="bg-[#FCFEFF] dark:bg-[#FCFEFF] p-3.5 rounded-xl border border-[#CFEBDD] dark:border-[#CFEBDD] shadow-xs">
+              <p className="text-[10px] font-bold text-[#0a5c3a]/75 dark:text-[#0a5c3a]/75 uppercase tracking-wide">Total Others Service Sell</p>
+              <p className="text-sm font-black text-[#0a5c3a] dark:text-[#0a5c3a] mt-1">${dailyOthersUSD.toLocaleString()}</p>
+              <p className="text-[10px] font-bold text-[#0a5c3a] dark:text-[#0a5c3a]">৳{dailyOthersBDT.toLocaleString()}</p>
             </div>
           </div>
         </div>
@@ -206,31 +206,21 @@ export function InvoicesView({ invoices, customers, onUpdateInvoice }: InvoicesV
         <div className="flex gap-2 w-full sm:w-auto">
           {(['All', 'Paid', 'Due', 'Partially Paid'] as const).map(st => {
             const isSelected = statusFilter === st;
-            let styleClasses = '';
-
-            if (st === 'Paid') {
-              styleClasses = isSelected
-                ? 'bg-emerald-600 text-white border-emerald-600 font-extrabold shadow-2xs ring-2 ring-emerald-500/30'
-                : 'bg-emerald-100 dark:bg-emerald-500/20 text-emerald-800 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800 hover:bg-emerald-200/80 dark:hover:bg-emerald-500/30';
-            } else if (st === 'Due') {
-              styleClasses = isSelected
-                ? 'bg-rose-600 text-white border-rose-600 font-extrabold shadow-2xs ring-2 ring-rose-500/30'
-                : 'bg-rose-100 dark:bg-rose-500/20 text-rose-800 dark:text-rose-300 border-rose-200 dark:border-rose-800 hover:bg-rose-200/80 dark:hover:bg-rose-500/30';
-            } else if (st === 'Partially Paid') {
-              styleClasses = isSelected
-                ? 'bg-amber-600 text-white border-amber-600 font-extrabold shadow-2xs ring-2 ring-amber-500/30'
-                : 'bg-amber-100 dark:bg-amber-500/20 text-amber-800 dark:text-amber-300 border-amber-200 dark:border-amber-800 hover:bg-amber-200/80 dark:hover:bg-amber-500/30';
-            } else {
-              styleClasses = isSelected
-                ? 'bg-[#1F5E98] text-white border-[#1F5E98] font-extrabold shadow-2xs ring-2 ring-blue-500/30'
-                : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-700';
-            }
-
             return (
               <button
                 key={st}
+                type="button"
                 onClick={() => setStatusFilter(st)}
-                className={`text-[10px] font-bold px-3 py-1.5 rounded-lg border transition-all cursor-pointer ${styleClasses}`}
+                style={{
+                  backgroundColor: isSelected ? '#1F5E98' : '#F68B2D',
+                  color: '#ffffff',
+                  borderColor: isSelected ? '#1F5E98' : '#F68B2D',
+                }}
+                className={`text-xs font-black px-3.5 py-1.5 rounded-xl border transition-all cursor-pointer shadow-xs ${
+                  isSelected
+                    ? 'ring-2 ring-blue-500/40 scale-105 opacity-100'
+                    : 'opacity-85 hover:opacity-100 hover:scale-102'
+                }`}
               >
                 {st}
               </button>
@@ -1568,14 +1558,16 @@ export function VendorsView({ vendors, onAddVendor, onUpdateVendor }: VendorsVie
               className="text-xs bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 w-full focus:outline-none"
             />
           </div>
-          <div className="divide-y divide-slate-100 dark:divide-slate-800" id="vendors-list-box">
+          <div id="vendors-list-box" className="space-y-1">
             {filtered.map(v => (
               <div
                 key={v.id}
                 id={`vendor-item-${v.id}`}
                 onClick={() => setSelectedVendorId(v.id)}
-                className={`p-4 flex items-center justify-between cursor-pointer transition-colors ${
-                  activeVendor?.id === v.id ? 'bg-blue-50/70 dark:bg-slate-800/60 border-l-4 border-[#1F5E98]' : 'hover:bg-slate-50 dark:hover:bg-slate-800/30'
+                className={`p-4 flex items-center justify-between cursor-pointer transition-colors border-l-[6px] ${
+                  activeVendor?.id === v.id
+                    ? '!border-l-[#1F5E98] bg-white dark:bg-slate-900'
+                    : '!border-l-transparent hover:bg-slate-50 dark:hover:bg-slate-800/30'
                 }`}
               >
                 <div>
@@ -1983,23 +1975,23 @@ export function ReportsView({ invoices, onTriggerExport }: ReportsViewProps) {
         </div>
       </div>
 
-      <div className="max-w-6xl space-y-4" id="reports-six-functions">
+      <div className="max-w-6xl space-y-4 text-slate-900 dark:text-slate-100" id="reports-six-functions">
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3">
           {statementMetrics.map(metric => {
             const Icon = metric.icon;
             return (
               <div
                 key={metric.title}
-                className="rounded-2xl border p-4 shadow-[0_12px_30px_rgba(12,66,117,0.07)]"
+                className="rounded-2xl border p-4 shadow-[0_12px_30px_rgba(12,66,117,0.07)] text-slate-900"
                 style={{ backgroundColor: metric.background, borderColor: metric.border }}
               >
                 <div className="flex items-start justify-between gap-3">
                   <div>
-                    <p className="text-[11px] uppercase">{metric.title}</p>
-                    <p className="mt-1 text-[10px] opacity-70">Monthly statement</p>
+                    <p className="text-[11px] uppercase font-bold tracking-wide text-slate-700">{metric.title}</p>
+                    <p className="mt-1 text-[10px] font-semibold text-slate-500">Monthly statement</p>
                   </div>
                   <span
-                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl"
+                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl text-slate-700"
                     style={{ backgroundColor: metric.iconBackground }}
                   >
                     <Icon size={16} strokeWidth={1.8} />
@@ -2009,8 +2001,8 @@ export function ReportsView({ invoices, onTriggerExport }: ReportsViewProps) {
                 <div className="mt-4 space-y-2">
                   {metric.values.map(item => (
                     <div key={item.label} className="flex items-end justify-between gap-3">
-                      <span className="text-[10px] uppercase opacity-70">{item.label}</span>
-                      <span className="text-right text-[15px] leading-tight sm:text-base">{item.value}</span>
+                      <span className="text-[10px] uppercase font-bold tracking-wide text-slate-600">{item.label}</span>
+                      <span className="text-right text-[15px] leading-tight sm:text-base font-black text-slate-900">{item.value}</span>
                     </div>
                   ))}
                 </div>
@@ -2023,10 +2015,10 @@ export function ReportsView({ invoices, onTriggerExport }: ReportsViewProps) {
           <div className="rounded-2xl border border-[#D8E6F3] bg-[#F7FBFF] p-4 shadow-[0_12px_30px_rgba(12,66,117,0.06)]">
             <div className="flex items-center justify-between gap-3">
               <div>
-                <h3 className="text-sm">Payment Approval Status</h3>
-                <p className="mt-1 text-[11px] opacity-70">Approval flow for selected month</p>
+                <h3 className="text-sm font-bold text-slate-900">Payment Approval Status</h3>
+                <p className="mt-1 text-[11px] font-semibold text-slate-500">Approval flow for selected month</p>
               </div>
-              <Check size={17} strokeWidth={1.8} />
+              <Check size={17} strokeWidth={1.8} className="text-slate-600" />
             </div>
 
             <div className="mt-4 space-y-2.5">
@@ -2039,8 +2031,8 @@ export function ReportsView({ invoices, onTriggerExport }: ReportsViewProps) {
                     style={{ backgroundColor: row.background, borderColor: row.border }}
                   >
                     <div className="flex items-center justify-between gap-3 text-xs">
-                      <span>{row.label}</span>
-                      <span>{row.count.toLocaleString()}</span>
+                      <span className="font-semibold text-slate-700">{row.label}</span>
+                      <span className="font-extrabold text-slate-900">{row.count.toLocaleString()}</span>
                     </div>
                     <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/80">
                       <div
@@ -2057,10 +2049,10 @@ export function ReportsView({ invoices, onTriggerExport }: ReportsViewProps) {
           <div className="rounded-2xl border border-[#D8E6F3] bg-[#F7FBFF] p-4 shadow-[0_12px_30px_rgba(12,66,117,0.06)]">
             <div className="flex items-center justify-between gap-3">
               <div>
-                <h3 className="text-sm">Payment Status</h3>
-                <p className="mt-1 text-[11px] opacity-70">Collection state across invoices</p>
+                <h3 className="text-sm font-bold text-slate-900">Payment Status</h3>
+                <p className="mt-1 text-[11px] font-semibold text-slate-500">Collection state across invoices</p>
               </div>
-              <CreditCard size={17} strokeWidth={1.8} />
+              <CreditCard size={17} strokeWidth={1.8} className="text-slate-600" />
             </div>
 
             <div className="mt-4 space-y-2.5">
@@ -2073,8 +2065,8 @@ export function ReportsView({ invoices, onTriggerExport }: ReportsViewProps) {
                     style={{ backgroundColor: row.background, borderColor: row.border }}
                   >
                     <div className="flex items-center justify-between gap-3 text-xs">
-                      <span>{row.label}</span>
-                      <span>{row.count.toLocaleString()}</span>
+                      <span className="font-semibold text-slate-700">{row.label}</span>
+                      <span className="font-extrabold text-slate-900">{row.count.toLocaleString()}</span>
                     </div>
                     <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/80">
                       <div
@@ -2092,10 +2084,10 @@ export function ReportsView({ invoices, onTriggerExport }: ReportsViewProps) {
         <div className="rounded-2xl border border-[#D8E6F3] bg-[#FCFEFF] p-4 shadow-[0_12px_30px_rgba(12,66,117,0.06)]">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
             <div>
-              <h3 className="text-sm">Company Summary</h3>
-              <p className="mt-1 text-[11px] opacity-70">Expense and vendor ledger in BDT</p>
+              <h3 className="text-sm font-bold text-slate-900">Company Summary</h3>
+              <p className="mt-1 text-[11px] font-semibold text-slate-500">Expense and vendor ledger in BDT</p>
             </div>
-            <span className="w-fit rounded-full border border-[#FBD9B9] bg-[#FFF7ED] px-3 py-1 text-[11px]">
+            <span className="w-fit rounded-full border border-[#FBD9B9] bg-[#FFF7ED] px-3 py-1 text-[11px] font-bold text-[#9a4a05]">
               Total {formatBDT(totalCompanyBDT)}
             </span>
           </div>
@@ -2103,13 +2095,13 @@ export function ReportsView({ invoices, onTriggerExport }: ReportsViewProps) {
           <div className="mt-4 overflow-hidden rounded-xl border border-[#D8E6F3] bg-white/75">
             {companyRows.map(row => (
               <div key={row.label} className="flex items-center justify-between gap-4 border-b border-[#E6EEF6] px-3 py-3 last:border-b-0">
-                <span className="text-xs">{row.label}</span>
-                <span className="text-right text-xs">{formatBDT(row.value)}</span>
+                <span className="text-xs font-semibold text-slate-700">{row.label}</span>
+                <span className="text-right text-xs font-extrabold text-slate-900">{formatBDT(row.value)}</span>
               </div>
             ))}
-            <div className="flex items-center justify-between gap-4 bg-[#F0F7FF] px-3 py-3">
-              <span className="text-xs">Total</span>
-              <span className="text-right text-sm">{formatBDT(totalCompanyBDT)}</span>
+            <div className="flex items-center justify-between gap-4 bg-[#F0F7FF] px-3 py-3 border-t border-[#D8E6F3]">
+              <span className="text-xs font-extrabold text-[#0c4275]">Total</span>
+              <span className="text-right text-sm font-black text-[#0c4275]">{formatBDT(totalCompanyBDT)}</span>
             </div>
           </div>
         </div>
@@ -2442,25 +2434,32 @@ export function InsightsView({ invoices, adAccounts, vendors, cards = [], series
 
       {/* 4 KPI Metric Cards in a Single Row */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-1">
-          <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Total Investment (USD)</p>
-          <p className="text-2xl font-black text-slate-900 dark:text-white">${overallInvestmentUSD.toLocaleString()}</p>
-          <p className="text-[10px] text-slate-400">Capital deployed across inventory</p>
+        {/* Total Investment (USD) - Soft Peach */}
+        <div className="p-5 rounded-2xl border border-[#FBD9B9] bg-[#FFF7ED] shadow-sm space-y-1">
+          <p className="text-[10px] font-bold text-[#0c4275]/80 uppercase tracking-wider">Total Investment (USD)</p>
+          <p className="text-2xl font-black text-[#0c4275]">${overallInvestmentUSD.toLocaleString()}</p>
+          <p className="text-[10px] text-[#0c4275]/70 font-medium">Capital deployed across inventory</p>
         </div>
-        <div className="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-1">
-          <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Total Topup (USD)</p>
-          <p className="text-2xl font-black text-[#F68B2D]">${overallTopupUSD.toLocaleString()}</p>
-          <p className="text-[10px] text-slate-400">Gross processed top-up sales</p>
+
+        {/* Total Topup (USD) - Soft Light Blue */}
+        <div className="p-5 rounded-2xl border border-[#CFE1F5] bg-[#F0F7FF] shadow-sm space-y-1">
+          <p className="text-[10px] font-bold text-[#0c4275]/80 uppercase tracking-wider">Total Topup (USD)</p>
+          <p className="text-2xl font-black text-[#0c4275]">${overallTopupUSD.toLocaleString()}</p>
+          <p className="text-[10px] text-[#0c4275]/70 font-medium">Gross processed top-up sales</p>
         </div>
-        <div className="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-1">
-          <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Available Margin Balance (USD)</p>
-          <p className="text-2xl font-black text-emerald-600 dark:text-emerald-400">${marginBalanceUSD.toLocaleString()}</p>
-          <p className="text-[10px] text-slate-400 font-semibold text-emerald-600">Net positive balance</p>
+
+        {/* Available Margin Balance (USD) - Soft Mint Green */}
+        <div className="p-5 rounded-2xl border border-[#CFEBDD] bg-[#F1FBF5] shadow-sm space-y-1">
+          <p className="text-[10px] font-bold text-[#0c4275]/80 uppercase tracking-wider">Available Margin Balance (USD)</p>
+          <p className="text-2xl font-black text-[#0c4275]">${marginBalanceUSD.toLocaleString()}</p>
+          <p className="text-[10px] text-[#0c4275]/70 font-medium">Net positive balance</p>
         </div>
-        <div className="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-1">
-          <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Margin (%)</p>
-          <p className="text-2xl font-black text-blue-600 dark:text-blue-400">{marginPercentage}</p>
-          <p className="text-[10px] text-slate-400 font-semibold text-blue-600">Profit yield ratio</p>
+
+        {/* Margin (%) - Soft Gold/Yellow */}
+        <div className="p-5 rounded-2xl border border-[#FDE68A] bg-[#FFFBE6] shadow-sm space-y-1">
+          <p className="text-[10px] font-bold text-[#0c4275]/80 uppercase tracking-wider">Margin (%)</p>
+          <p className="text-2xl font-black text-[#0c4275]">{marginPercentage}</p>
+          <p className="text-[10px] text-[#0c4275]/70 font-medium">Profit yield ratio</p>
         </div>
       </div>
 
@@ -2487,7 +2486,12 @@ export function InsightsView({ invoices, adAccounts, vendors, cards = [], series
                     <Cell key={`cell-${index}`} fill={COLOR_PALETTE[index % COLOR_PALETTE.length]} />
                   ))}
                 </Pie>
-                <Tooltip formatter={(v) => `$${v}`} />
+                <Tooltip 
+                  formatter={(v) => `$${v}`} 
+                  contentStyle={{ backgroundColor: '#ffffff', borderRadius: '12px', border: '1px solid #cbd5e1', color: '#0f172a', fontSize: '12px', fontWeight: 'bold', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)' }}
+                  itemStyle={{ color: '#0f172a', fontWeight: 'bold' }}
+                  labelStyle={{ color: '#0f172a', fontWeight: 'bold' }}
+                />
               </PieChart>
             </ResponsiveContainer>
           </div>
@@ -2505,7 +2509,12 @@ export function InsightsView({ invoices, adAccounts, vendors, cards = [], series
                 <CartesianGrid strokeDasharray="3 3" vertical={false} />
                 <XAxis dataKey="name" fontSize={9} tickLine={false} />
                 <YAxis fontSize={9} tickLine={false} />
-                <Tooltip formatter={(v) => `৳${Number(v).toLocaleString()}`} />
+                <Tooltip 
+                  formatter={(v) => `৳${Number(v).toLocaleString()}`} 
+                  contentStyle={{ backgroundColor: '#ffffff', borderRadius: '12px', border: '1px solid #cbd5e1', color: '#0f172a', fontSize: '12px', fontWeight: 'bold', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)' }}
+                  itemStyle={{ color: '#0f172a', fontWeight: 'bold' }}
+                  labelStyle={{ color: '#0f172a', fontWeight: 'bold' }}
+                />
                 <Bar dataKey="value" fill="#F68B2D" radius={[6, 6, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
@@ -2582,14 +2591,14 @@ export function InsightsView({ invoices, adAccounts, vendors, cards = [], series
                     stroke="#94A3B8" 
                     fontSize={10} 
                     tickLine={false} 
-                    tick={{ fill: '#475569', fontWeight: 'bold' }}
+                    tick={{ fill: '#64748B', fontWeight: 'bold' }}
                   />
                   <YAxis 
                     stroke="#94A3B8" 
                     fontSize={9} 
                     tickLine={false} 
                     axisLine={false}
-                    tick={{ fill: '#475569', fontWeight: 'bold' }}
+                    tick={{ fill: '#64748B', fontWeight: 'bold' }}
                     tickFormatter={(val) => `৳${(val / 1000000).toFixed(1)}M`}
                   />
                   <Tooltip 
@@ -2736,15 +2745,15 @@ export function InsightsView({ invoices, adAccounts, vendors, cards = [], series
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6" id="channel-analytics-panel">
         {/* Channel Wise Payment Received */}
         <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
-          <div className="px-4 py-2.5 bg-[#1F3A5F] text-white text-center font-extrabold text-xs uppercase tracking-wider">
+          <div className="bg-navy-header card-header-title text-white px-4 py-2.5 text-center font-extrabold text-xs uppercase tracking-wider" style={{ color: '#ffffff', backgroundColor: '#1F3A5F' }}>
             Channel Wise Payment Received
           </div>
           <table className="w-full border-collapse">
             <thead>
-              <tr className="bg-[#FFC83D] text-slate-900">
-                <th className="border border-slate-300 dark:border-slate-700 px-2 py-1.5 text-[11px] font-bold text-left">Name</th>
-                <th className="border border-slate-300 dark:border-slate-700 px-2 py-1.5 text-[11px] font-bold text-right">QTY</th>
-                <th className="border border-slate-300 dark:border-slate-700 px-2 py-1.5 text-[11px] font-bold text-right">Amount</th>
+              <tr className="bg-navy-header text-white" style={{ color: '#ffffff', backgroundColor: '#1F3A5F' }}>
+                <th className="border border-slate-300 dark:border-slate-700 px-2 py-1.5 text-[11px] font-bold text-left text-white" style={{ color: '#ffffff' }}>Name</th>
+                <th className="border border-slate-300 dark:border-slate-700 px-2 py-1.5 text-[11px] font-bold text-right text-white" style={{ color: '#ffffff' }}>QTY</th>
+                <th className="border border-slate-300 dark:border-slate-700 px-2 py-1.5 text-[11px] font-bold text-right text-white" style={{ color: '#ffffff' }}>Amount</th>
               </tr>
             </thead>
             <tbody>
@@ -2777,9 +2786,9 @@ export function InsightsView({ invoices, adAccounts, vendors, cards = [], series
                       </tr>
                     ))}
                     <tr>
-                      <td className="border border-slate-300 dark:border-slate-700 px-2 py-1 text-[11px] font-extrabold text-white bg-[#1F3A5F] text-left">TOTAL</td>
-                      <td className="border border-slate-300 dark:border-slate-700 px-2 py-1 text-[11px] font-extrabold text-right text-white bg-[#1F3A5F]">{totalQty}</td>
-                      <td className="border border-slate-300 dark:border-slate-700 px-2 py-1 text-[11px] font-extrabold text-right text-white bg-[#1F3A5F]">৳{totalAmt.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+                      <td className="border border-slate-300 dark:border-slate-700 px-2 py-1 text-[11px] font-extrabold bg-navy-header text-left text-white" style={{ color: '#ffffff', backgroundColor: '#1F3A5F' }}>TOTAL</td>
+                      <td className="border border-slate-300 dark:border-slate-700 px-2 py-1 text-[11px] font-extrabold text-right bg-navy-header text-white" style={{ color: '#ffffff', backgroundColor: '#1F3A5F' }}>{totalQty}</td>
+                      <td className="border border-slate-300 dark:border-slate-700 px-2 py-1 text-[11px] font-extrabold text-right bg-navy-header text-white" style={{ color: '#ffffff', backgroundColor: '#1F3A5F' }}>৳{totalAmt.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
                     </tr>
                   </>
                 );
@@ -2790,7 +2799,7 @@ export function InsightsView({ invoices, adAccounts, vendors, cards = [], series
 
         {/* Total Sale + Daily Breakdown */}
         <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
-          <div className="px-4 py-2.5 bg-[#1F3A5F] text-white text-center font-extrabold text-xs uppercase tracking-wider">
+          <div className="bg-navy-header card-header-title text-white px-4 py-2.5 text-center font-extrabold text-xs uppercase tracking-wider" style={{ color: '#ffffff', backgroundColor: '#1F3A5F' }}>
             Total Sale (Daily Breakdown)
           </div>
           {(() => {
@@ -2809,15 +2818,15 @@ export function InsightsView({ invoices, adAccounts, vendors, cards = [], series
             return (
               <table className="w-full border-collapse">
                 <thead>
-                  <tr className="bg-[#FFC83D] text-slate-900">
-                    <td colSpan={3} className="border border-slate-300 dark:border-slate-700 px-2 py-1.5 text-[12px] font-extrabold text-center">
+                  <tr className="bg-navy-header text-white" style={{ color: '#ffffff', backgroundColor: '#1F3A5F' }}>
+                    <td colSpan={3} className="border border-slate-300 dark:border-slate-700 px-2 py-1.5 text-[12px] font-extrabold text-center text-white" style={{ color: '#ffffff' }}>
                       Total Sale &nbsp;&nbsp; ${totalUSD.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} &nbsp;&nbsp; ৳{totalBDT.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                     </td>
                   </tr>
-                  <tr className="bg-[#1F3A5F] text-white">
-                    <th className="border border-slate-300 dark:border-slate-700 px-2 py-1.5 text-[11px] font-bold text-left">Date</th>
-                    <th className="border border-slate-300 dark:border-slate-700 px-2 py-1.5 text-[11px] font-bold text-right">Total Amount USD</th>
-                    <th className="border border-slate-300 dark:border-slate-700 px-2 py-1.5 text-[11px] font-bold text-right">Total Amount BDT</th>
+                  <tr className="bg-navy-header text-white" style={{ color: '#ffffff', backgroundColor: '#1F3A5F' }}>
+                    <th className="border border-slate-300 dark:border-slate-700 px-2 py-1.5 text-[11px] font-bold text-left text-white" style={{ color: '#ffffff' }}>Date</th>
+                    <th className="border border-slate-300 dark:border-slate-700 px-2 py-1.5 text-[11px] font-bold text-right text-white" style={{ color: '#ffffff' }}>Total Amount USD</th>
+                    <th className="border border-slate-300 dark:border-slate-700 px-2 py-1.5 text-[11px] font-bold text-right text-white" style={{ color: '#ffffff' }}>Total Amount BDT</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -2842,15 +2851,15 @@ export function InsightsView({ invoices, adAccounts, vendors, cards = [], series
 
         {/* Channel Wise Vendor Payment (Paid) */}
         <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
-          <div className="px-4 py-2.5 bg-[#1F3A5F] text-white text-center font-extrabold text-xs uppercase tracking-wider">
+          <div className="bg-navy-header card-header-title text-white px-4 py-2.5 text-center font-extrabold text-xs uppercase tracking-wider" style={{ color: '#ffffff', backgroundColor: '#1F3A5F' }}>
             Channel Wise Vendor Payment (Paid)
           </div>
           <table className="w-full border-collapse">
             <thead>
-              <tr className="bg-[#FFC83D] text-slate-900">
-                <th className="border border-slate-300 dark:border-slate-700 px-2 py-1.5 text-[11px] font-bold text-left">Name</th>
-                <th className="border border-slate-300 dark:border-slate-700 px-2 py-1.5 text-[11px] font-bold text-right">QTY</th>
-                <th className="border border-slate-300 dark:border-slate-700 px-2 py-1.5 text-[11px] font-bold text-right">Amount</th>
+              <tr className="bg-navy-header text-white" style={{ color: '#ffffff', backgroundColor: '#1F3A5F' }}>
+                <th className="border border-slate-300 dark:border-slate-700 px-2 py-1.5 text-[11px] font-bold text-left text-white" style={{ color: '#ffffff' }}>Name</th>
+                <th className="border border-slate-300 dark:border-slate-700 px-2 py-1.5 text-[11px] font-bold text-right text-white" style={{ color: '#ffffff' }}>QTY</th>
+                <th className="border border-slate-300 dark:border-slate-700 px-2 py-1.5 text-[11px] font-bold text-right text-white" style={{ color: '#ffffff' }}>Amount</th>
               </tr>
             </thead>
             <tbody>
@@ -2883,9 +2892,9 @@ export function InsightsView({ invoices, adAccounts, vendors, cards = [], series
                       </tr>
                     ))}
                     <tr>
-                      <td className="border border-slate-300 dark:border-slate-700 px-2 py-1 text-[11px] font-extrabold text-white bg-[#1F3A5F] text-left">Total</td>
-                      <td className="border border-slate-300 dark:border-slate-700 px-2 py-1 text-[11px] font-extrabold text-right text-white bg-[#1F3A5F]">{totalQty}</td>
-                      <td className="border border-slate-300 dark:border-slate-700 px-2 py-1 text-[11px] font-extrabold text-right text-white bg-[#1F3A5F]">৳{totalAmt.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+                      <td className="border border-slate-300 dark:border-slate-700 px-2 py-1 text-[11px] font-extrabold bg-navy-header text-left text-white" style={{ color: '#ffffff', backgroundColor: '#1F3A5F' }}>Total</td>
+                      <td className="border border-slate-300 dark:border-slate-700 px-2 py-1 text-[11px] font-extrabold text-right bg-navy-header text-white" style={{ color: '#ffffff', backgroundColor: '#1F3A5F' }}>{totalQty}</td>
+                      <td className="border border-slate-300 dark:border-slate-700 px-2 py-1 text-[11px] font-extrabold text-right bg-navy-header text-white" style={{ color: '#ffffff', backgroundColor: '#1F3A5F' }}>৳{totalAmt.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
                     </tr>
                   </>
                 );
@@ -2896,13 +2905,13 @@ export function InsightsView({ invoices, adAccounts, vendors, cards = [], series
 
         {/* Payment Approval Status + Payment Status */}
         <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
-          <div className="px-4 py-2.5 bg-[#1F3A5F] text-white text-center font-extrabold text-xs uppercase tracking-wider">
+          <div className="bg-navy-header card-header-title text-white px-4 py-2.5 text-center font-extrabold text-xs uppercase tracking-wider" style={{ color: '#ffffff', backgroundColor: '#1F3A5F' }}>
             Approval &amp; Payment Status
           </div>
           <table className="w-full border-collapse">
             <thead>
-              <tr className="bg-[#FFC83D] text-slate-900">
-                <th colSpan={2} className="border border-slate-300 dark:border-slate-700 px-2 py-1.5 text-[11px] font-bold text-center">Payment Approval Status</th>
+              <tr className="bg-navy-header text-white" style={{ color: '#ffffff', backgroundColor: '#1F3A5F' }}>
+                <th colSpan={2} className="border border-slate-300 dark:border-slate-700 px-2 py-1.5 text-[11px] font-bold text-center text-white" style={{ color: '#ffffff' }}>Payment Approval Status</th>
               </tr>
             </thead>
             <tbody>
@@ -2923,8 +2932,8 @@ export function InsightsView({ invoices, adAccounts, vendors, cards = [], series
 
           <table className="w-full border-collapse mt-3">
             <thead>
-              <tr className="bg-[#FFC83D] text-slate-900">
-                <th colSpan={2} className="border border-slate-300 dark:border-slate-700 px-2 py-1.5 text-[11px] font-bold text-center">Payment Status</th>
+              <tr className="bg-navy-header text-white" style={{ color: '#ffffff', backgroundColor: '#1F3A5F' }}>
+                <th colSpan={2} className="border border-slate-300 dark:border-slate-700 px-2 py-1.5 text-[11px] font-bold text-center text-white" style={{ color: '#ffffff' }}>Payment Status</th>
               </tr>
             </thead>
             <tbody>
@@ -3023,12 +3032,12 @@ export function InsightsView({ invoices, adAccounts, vendors, cards = [], series
                         onClick={() => setActiveSelectedAccId(acc.adAccountId)}
                         className={`w-full text-left p-3 flex flex-col gap-1 transition-all cursor-pointer ${
                           isActive
-                            ? 'bg-[#F0F7FF] dark:bg-[#F0F7FF] border-l-4 border-[#1F5E98]'
-                            : 'hover:bg-[#F7FBFF] dark:hover:bg-[#F7FBFF]'
+                            ? 'bg-[#F0F7FF] dark:bg-slate-800/90 border-l-4 border-[#1F5E98] dark:border-[#38BDF8]'
+                            : 'hover:bg-[#F7FBFF] dark:hover:bg-slate-800/50'
                         }`}
                       >
                         <div className="flex justify-between items-start gap-2 w-full">
-                          <span className="text-xs font-black text-slate-900 dark:text-white truncate max-w-[160px]">{acc.adAccountName}</span>
+                          <span className="text-xs font-black text-slate-900 dark:text-slate-100 truncate max-w-[160px]">{acc.adAccountName}</span>
                           <span className={`text-[8px] font-black uppercase px-1.5 py-0.5 rounded-md ${
                             acc.platform === 'Facebook' ? 'bg-[#E7F0FE] text-[#1877F2] border border-[#1877F2]/25' :
                             acc.platform === 'TikTok' ? 'bg-gradient-to-r from-[#E6FFFB] to-[#FFE7EC] text-[#FE2C55] border border-[#FE2C55]/25' :
@@ -3056,7 +3065,7 @@ export function InsightsView({ invoices, adAccounts, vendors, cards = [], series
               <div className="space-y-6">
                 
                 {/* Account Details Header */}
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-xl bg-[#F7FBFF] dark:bg-[#F7FBFF] border border-[#D8E6F3] dark:border-[#D8E6F3]">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
                   <div className="space-y-1">
                     <div className="flex items-center gap-2">
                       <span className="text-sm font-black text-slate-900 dark:text-white">{activeAcc.adAccountName}</span>
@@ -3064,17 +3073,17 @@ export function InsightsView({ invoices, adAccounts, vendors, cards = [], series
                         activeAcc.platform === 'Facebook' ? 'bg-[#E7F0FE] text-[#1877F2] border border-[#1877F2]/25' :
                         activeAcc.platform === 'TikTok' ? 'bg-gradient-to-r from-[#E6FFFB] to-[#FFE7EC] text-[#FE2C55] border border-[#FE2C55]/25' :
                         activeAcc.platform === 'Google' ? 'bg-gradient-to-r from-[#E6F4EA] via-[#FEF7E0] to-[#E8F0FE] text-[#1A73E8] border border-[#1A73E8]/25' :
-                        'bg-amber-100 dark:bg-amber-900/30'
+                        'bg-amber-100 text-amber-900'
                       }`}>
                         <PlatformText platform={activeAcc.platform} />
                       </span>
                     </div>
-                    <div className="text-xs text-slate-500 font-medium flex items-center gap-1.5 flex-wrap">
-                      <span className="font-mono">ID: {activeAcc.adAccountId}</span>
-                      <span>•</span>
-                      <span>BM: {activeAcc.bmName || "N/A"}</span>
-                      <span>•</span>
-                      <span>Card: {activeAcc.billingCard || "N/A"}</span>
+                    <div className="text-xs text-slate-600 dark:text-slate-300 font-semibold flex items-center gap-1.5 flex-wrap">
+                      <span className="font-mono text-slate-800 dark:text-slate-200">ID: {activeAcc.adAccountId}</span>
+                      <span className="text-slate-400">•</span>
+                      <span className="text-slate-700 dark:text-slate-300">BM: {activeAcc.bmName || "N/A"}</span>
+                      <span className="text-slate-400">•</span>
+                      <span className="text-slate-700 dark:text-slate-300">Card: {activeAcc.billingCard || "N/A"}</span>
                     </div>
                   </div>
                   <div className="flex items-center">
@@ -3091,24 +3100,24 @@ export function InsightsView({ invoices, adAccounts, vendors, cards = [], series
                 {/* Stat Cards Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   {/* Total USD Card */}
-                  <div className="p-4 rounded-xl border border-[#FBD9B9] dark:border-[#FBD9B9] bg-[#FFF7ED] dark:bg-[#FFF7ED] space-y-1">
-                    <span className="text-[10px] font-black text-[#0c4275]/75 dark:text-[#0c4275]/75 uppercase tracking-wider block">Total USD Top-up</span>
-                    <h4 className="text-xl font-black text-[#0c4275] dark:text-[#0c4275]">${totalUSD.toLocaleString()}</h4>
-                    <span className="text-[9px] text-[#0c4275]/65 dark:text-[#0c4275]/65 font-medium block">Cumulative loaded sum</span>
+                  <div className="p-4 rounded-2xl border border-[#FBD9B9] bg-[#FFF7ED] shadow-sm space-y-1">
+                    <span className="text-[10px] font-bold text-[#0c4275]/80 uppercase tracking-wider block">Total USD Top-up</span>
+                    <h4 className="text-xl font-black text-[#0c4275]">${totalUSD.toLocaleString()}</h4>
+                    <span className="text-[9px] text-[#0c4275]/70 font-medium block">Cumulative loaded sum</span>
                   </div>
 
                   {/* Total BDT Card */}
-                  <div className="p-4 rounded-xl border border-[#CFE1F5] dark:border-[#CFE1F5] bg-[#F0F7FF] dark:bg-[#F0F7FF] space-y-1">
-                    <span className="text-[10px] font-black text-[#0c4275]/75 dark:text-[#0c4275]/75 uppercase tracking-wider block">Total BDT Spent</span>
-                    <h4 className="text-xl font-black text-[#0c4275] dark:text-[#0c4275]">৳{totalBDT.toLocaleString()}</h4>
-                    <span className="text-[9px] text-[#0c4275]/65 dark:text-[#0c4275]/65 font-medium block">Cumulative local spent</span>
+                  <div className="p-4 rounded-2xl border border-[#CFE1F5] bg-[#F0F7FF] shadow-sm space-y-1">
+                    <span className="text-[10px] font-bold text-[#0c4275]/80 uppercase tracking-wider block">Total BDT Spent</span>
+                    <h4 className="text-xl font-black text-[#0c4275]">৳{totalBDT.toLocaleString()}</h4>
+                    <span className="text-[9px] text-[#0c4275]/70 font-medium block">Cumulative local spent</span>
                   </div>
 
                   {/* Average Exchange Rate Card */}
-                  <div className="p-4 rounded-xl border border-[#CFEBDD] dark:border-[#CFEBDD] bg-[#F1FBF5] dark:bg-[#F1FBF5] space-y-1">
-                    <span className="text-[10px] font-black text-[#0c4275]/75 dark:text-[#0c4275]/75 uppercase tracking-wider block">Avg Exchange Rate</span>
-                    <h4 className="text-xl font-black text-[#0c4275] dark:text-[#0c4275]">৳{averageRate.toFixed(2)}</h4>
-                    <span className="text-[9px] text-[#0c4275]/65 dark:text-[#0c4275]/65 font-medium block">Weighted BDT per USD</span>
+                  <div className="p-4 rounded-2xl border border-[#CFEBDD] bg-[#F1FBF5] shadow-sm space-y-1">
+                    <span className="text-[10px] font-bold text-[#0c4275]/80 uppercase tracking-wider block">Avg Exchange Rate</span>
+                    <h4 className="text-xl font-black text-[#0c4275]">৳{averageRate.toFixed(2)}</h4>
+                    <span className="text-[9px] text-[#0c4275]/70 font-medium block">Weighted BDT per USD</span>
                   </div>
                 </div>
 

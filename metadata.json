@@ -1,0 +1,6 @@
+{
+  "name": "AdsBuzz ERP",
+  "description": "High-fidelity Enterprise Resource Planning (ERP) suite for social ad account loading, reseller CRM, and billing card reconciliation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

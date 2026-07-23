@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.85" />
+    <title>My Google AI Studio App</title>
+    <script>
+      // Make window.fetch writable and configurable via getters/setters on the prototype chain
+      // This prevents Uncaught TypeErrors (e.g. "Cannot set property fetch of #<Window> which has only a getter")
+      // when polyfills or external scripts in sandboxed environments try to override fetch.
+      (function() {
+        try {
+          var originalFetch = window.fetch;
+          var customFetch = originalFetch;
+
+          function patchObject(obj) {
+            try {
+              var desc = Object.getOwnPropertyDescriptor(obj, 'fetch');
+              if (!desc || desc.configurable) {
+                Object.defineProperty(obj, 'fetch', {
+                  get: function() {
+                    return customFetch;
+                  },
+                  set: function(val) {
+                    customFetch = val;
+                  },
+                  configurable: true,
+                  enumerable: true
+                });
+                return true;
+              }
+            } catch (e) {
+              // Ignore
+            }
+            return false;
+          }
+
+          if (typeof Window !== 'undefined' && Window.prototype) {
+            patchObject(Window.prototype);
+          }
+          patchObject(window);
+          if (typeof globalThis !== 'undefined') {
+            patchObject(globalThis);
+          }
+        } catch (err) {
+          console.warn('Failed to define fetch setter/getter polyfill:', err);
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

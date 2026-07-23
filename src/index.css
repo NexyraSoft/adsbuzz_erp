@@ -147,17 +147,23 @@ th, th *,
    ========================================== */
 
 /* 1. Global App & Page Layout Backgrounds */
+#root,
 #app-root-container,
 body,
 .bg-slate-950,
-.bg-\[\#F7F9FC\],
+.bg-\[\#F8F5F0\],
 .dark,
 .dark #app-root-container,
 .dark .bg-slate-950,
 .dark .dark\:bg-slate-950 {
   background-image: none !important;
-  background-color: #ffffff !important;
+  background-color: #F8F5F0 !important;
   color: #1e293b !important;
+}
+
+#app-root-container > .flex-1,
+#app-root-container main {
+  background-color: #F8F5F0 !important;
 }
 
 /* 2. Card Containers, Header, Table Headers & Bento elements */
@@ -1026,4 +1032,3 @@ svg rect,
 svg path {
   outline: none !important;
 }
-

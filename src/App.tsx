@@ -431,7 +431,7 @@ export default function App() {
   const stats = computeDashboardStats();
 
   return (
-    <div className={`flex font-sans min-h-screen ${darkMode ? 'dark bg-slate-950 text-slate-100' : 'bg-[#F7F9FC] text-slate-800'}`} id="app-root-container">
+    <div className={`flex font-sans min-h-screen ${darkMode ? 'dark bg-slate-950 text-slate-100' : 'bg-[#F8F5F0] text-slate-800'}`} id="app-root-container">
       
       {/* Sidebar Navigation */}
       <Sidebar 

@@ -913,16 +913,16 @@ export default function SalesView({
                   <p className="text-xs text-slate-400 mt-0.5">Please review the transaction summary below before executing the top-up.</p>
                 </div>
 
-                <div className="space-y-4 border border-sky-200 dark:border-sky-800/80 rounded-2xl p-6 bg-[#e0f2fe] dark:bg-sky-950/40 text-slate-900 dark:text-slate-100 shadow-sm">
+                <div className="space-y-4 border border-[#CFE1F5] dark:border-[#CFE1F5] rounded-2xl p-6 bg-[#F0F7FF] dark:bg-[#F0F7FF] text-[#0c4275] dark:text-[#0c4275] shadow-sm">
                   <div className="grid grid-cols-2 gap-4 text-xs">
                     <div>
-                      <p className="text-sky-900/80 dark:text-sky-300 font-semibold">Customer</p>
-                      <p className="font-extrabold text-sm text-slate-950 dark:text-white mt-0.5">{activeCustomer?.name || 'N/A'}</p>
-                      <p className="text-xs text-sky-800/70 dark:text-sky-300/80 font-medium mt-0.5">{activeCustomer?.companyName}</p>
+                      <p className="text-[#0c4275]/75 dark:text-[#0c4275]/75 font-semibold">Customer</p>
+                      <p className="font-extrabold text-sm text-[#0c4275] dark:text-[#0c4275] mt-0.5">{activeCustomer?.name || 'N/A'}</p>
+                      <p className="text-xs text-[#0c4275]/70 dark:text-[#0c4275]/70 font-medium mt-0.5">{activeCustomer?.companyName}</p>
                     </div>
                     <div>
-                      <p className="text-sky-900/80 dark:text-sky-300 font-semibold">Publisher Platform</p>
-                      <p className="font-extrabold text-sm text-slate-950 dark:text-white flex items-center gap-2 mt-0.5">
+                      <p className="text-[#0c4275]/75 dark:text-[#0c4275]/75 font-semibold">Publisher Platform</p>
+                      <p className="font-extrabold text-sm text-[#0c4275] dark:text-[#0c4275] flex items-center gap-2 mt-0.5">
                         <span className={`inline-block w-2.5 h-2.5 rounded-full ${
                           platform === 'Facebook' ? 'bg-[#1877F2]' :
                           platform === 'TikTok' ? 'bg-[#FE2C55]' :
@@ -933,53 +933,53 @@ export default function SalesView({
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4 text-xs pt-4 border-t border-sky-200/80 dark:border-sky-800/70">
+                  <div className="grid grid-cols-2 gap-4 text-xs pt-4 border-t border-[#CFE1F5] dark:border-[#CFE1F5]">
                     <div>
-                      <p className="text-sky-900/80 dark:text-sky-300 font-semibold">Target Ad Account</p>
-                      <p className="font-extrabold text-sm text-slate-950 dark:text-white mt-0.5">{activeAccount?.adAccountName || 'N/A'}</p>
-                      <p className="text-xs font-mono font-medium text-sky-800/80 dark:text-sky-300 mt-0.5">ID: {activeAccount?.adAccountId}</p>
+                      <p className="text-[#0c4275]/75 dark:text-[#0c4275]/75 font-semibold">Target Ad Account</p>
+                      <p className="font-extrabold text-sm text-[#0c4275] dark:text-[#0c4275] mt-0.5">{activeAccount?.adAccountName || 'N/A'}</p>
+                      <p className="text-xs font-mono font-medium text-[#0c4275]/70 dark:text-[#0c4275]/70 mt-0.5">ID: {activeAccount?.adAccountId}</p>
                     </div>
                     <div>
-                      <p className="text-sky-900/80 dark:text-sky-300 font-semibold">Billing BM Hub</p>
-                      <p className="font-extrabold text-sm text-slate-950 dark:text-white mt-0.5">{activeAccount?.bmName || 'AdsBuzz Partner'}</p>
+                      <p className="text-[#0c4275]/75 dark:text-[#0c4275]/75 font-semibold">Billing BM Hub</p>
+                      <p className="font-extrabold text-sm text-[#0c4275] dark:text-[#0c4275] mt-0.5">{activeAccount?.bmName || 'AdsBuzz Partner'}</p>
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-3 gap-3 text-xs pt-4 border-t border-sky-200/80 dark:border-sky-800/70 text-center">
-                    <div className="bg-white dark:bg-slate-900 p-3.5 rounded-xl border border-sky-200 dark:border-sky-800 shadow-xs">
-                      <p className="text-[10px] text-sky-900 dark:text-sky-300 uppercase tracking-wider font-extrabold">USD TOP-UP</p>
-                      <p className="text-base sm:text-lg font-black text-slate-950 dark:text-white mt-1">${topupAmountUSD}</p>
+                  <div className="grid grid-cols-3 gap-3 text-xs pt-4 border-t border-[#CFE1F5] dark:border-[#CFE1F5] text-center">
+                    <div className="bg-[#FFF7ED] dark:bg-[#FFF7ED] p-3.5 rounded-xl border border-[#FBD9B9] dark:border-[#FBD9B9] shadow-xs">
+                      <p className="text-[10px] text-[#0c4275]/75 dark:text-[#0c4275]/75 uppercase tracking-wider font-extrabold">USD TOP-UP</p>
+                      <p className="text-base sm:text-lg font-black text-[#0c4275] dark:text-[#0c4275] mt-1">${topupAmountUSD}</p>
                     </div>
-                    <div className="bg-white dark:bg-slate-900 p-3.5 rounded-xl border border-sky-200 dark:border-sky-800 shadow-xs">
-                      <p className="text-[10px] text-sky-900 dark:text-sky-300 uppercase tracking-wider font-extrabold">DOLLAR RATE</p>
-                      <p className="text-base sm:text-lg font-black text-slate-950 dark:text-white mt-1">৳{dollarRate}</p>
+                    <div className="bg-[#F1FBF5] dark:bg-[#F1FBF5] p-3.5 rounded-xl border border-[#CFEBDD] dark:border-[#CFEBDD] shadow-xs">
+                      <p className="text-[10px] text-[#0c4275]/75 dark:text-[#0c4275]/75 uppercase tracking-wider font-extrabold">DOLLAR RATE</p>
+                      <p className="text-base sm:text-lg font-black text-[#0c4275] dark:text-[#0c4275] mt-1">৳{dollarRate}</p>
                     </div>
-                    <div className="bg-white dark:bg-slate-900 p-3.5 rounded-xl border border-sky-200 dark:border-sky-800 shadow-xs">
-                      <p className="text-[10px] text-sky-900 dark:text-sky-300 uppercase tracking-wider font-extrabold">TOTAL BDT</p>
-                      <p className="text-base sm:text-lg font-black text-slate-950 dark:text-white mt-1">৳{totalBDT.toLocaleString()}</p>
+                    <div className="bg-[#FCFEFF] dark:bg-[#FCFEFF] p-3.5 rounded-xl border border-[#D8E6F3] dark:border-[#D8E6F3] shadow-xs">
+                      <p className="text-[10px] text-[#0c4275]/75 dark:text-[#0c4275]/75 uppercase tracking-wider font-extrabold">TOTAL BDT</p>
+                      <p className="text-base sm:text-lg font-black text-[#0c4275] dark:text-[#0c4275] mt-1">৳{totalBDT.toLocaleString()}</p>
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4 text-xs pt-4 border-t border-sky-200/80 dark:border-sky-800/70">
+                  <div className="grid grid-cols-2 gap-4 text-xs pt-4 border-t border-[#CFE1F5] dark:border-[#CFE1F5]">
                     <div>
-                      <p className="text-sky-900/80 dark:text-sky-300 font-semibold">BDT Amount Paid</p>
+                      <p className="text-[#0c4275]/75 dark:text-[#0c4275]/75 font-semibold">BDT Amount Paid</p>
                       <p className="font-black text-sm text-emerald-700 dark:text-emerald-400 mt-0.5">৳{paidBDT.toLocaleString()}</p>
                     </div>
                     <div>
-                      <p className="text-sky-900/80 dark:text-sky-300 font-semibold">Remaining Due</p>
+                      <p className="text-[#0c4275]/75 dark:text-[#0c4275]/75 font-semibold">Remaining Due</p>
                       <p className={`font-black text-sm mt-0.5 ${dueBDT > 0 ? 'text-rose-600 dark:text-rose-400' : 'text-emerald-700 dark:text-emerald-400'}`}>
                         ৳{dueBDT.toLocaleString()}
                       </p>
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-3 gap-4 text-xs pt-4 border-t border-sky-200/80 dark:border-sky-800/70 items-center">
+                  <div className="grid grid-cols-3 gap-4 text-xs pt-4 border-t border-[#CFE1F5] dark:border-[#CFE1F5] items-center">
                     <div>
-                      <p className="text-sky-900/80 dark:text-sky-300 font-semibold">Payment Channel</p>
-                      <p className="font-extrabold text-sm text-slate-950 dark:text-white mt-0.5">{paymentMethod}</p>
+                      <p className="text-[#0c4275]/75 dark:text-[#0c4275]/75 font-semibold">Payment Channel</p>
+                      <p className="font-extrabold text-sm text-[#0c4275] dark:text-[#0c4275] mt-0.5">{paymentMethod}</p>
                     </div>
                     <div className="col-span-2">
-                      <p className="text-sky-900/80 dark:text-sky-300 font-semibold mb-1">Topup Status</p>
+                      <p className="text-[#0c4275]/75 dark:text-[#0c4275]/75 font-semibold mb-1">Topup Status</p>
                       <span className={`inline-flex items-center text-xs px-2.5 py-1 rounded-lg font-extrabold ${
                         topupStatus === 'Successfull'
                           ? 'bg-emerald-100 text-emerald-900 border border-emerald-300 dark:bg-emerald-950/80 dark:text-emerald-200 dark:border-emerald-700' :
@@ -993,9 +993,9 @@ export default function SalesView({
                   </div>
 
                   {paymentScreenshot && (
-                    <div className="pt-4 border-t border-sky-200/80 dark:border-sky-800/70">
-                      <p className="text-sky-900/80 dark:text-sky-300 font-semibold text-xs mb-2">Payment Screenshot</p>
-                      <div className="bg-white dark:bg-slate-900 p-2.5 rounded-xl border border-sky-200 dark:border-sky-800 inline-flex items-center gap-3 shadow-xs">
+                    <div className="pt-4 border-t border-[#CFE1F5] dark:border-[#CFE1F5]">
+                      <p className="text-[#0c4275]/75 dark:text-[#0c4275]/75 font-semibold text-xs mb-2">Payment Screenshot</p>
+                      <div className="bg-[#FCFEFF] dark:bg-[#FCFEFF] p-2.5 rounded-xl border border-[#D8E6F3] dark:border-[#D8E6F3] inline-flex items-center gap-3 shadow-xs">
                         <div className="h-16 w-16 rounded-lg overflow-hidden border border-slate-200 dark:border-slate-700 flex-shrink-0">
                           <img
                             src={paymentScreenshot}
@@ -1004,7 +1004,7 @@ export default function SalesView({
                           />
                         </div>
                         <div className="text-xs">
-                          <p className="font-extrabold text-slate-950 dark:text-white">{screenshotName || 'Attached'}</p>
+                          <p className="font-extrabold text-[#0c4275] dark:text-[#0c4275]">{screenshotName || 'Attached'}</p>
                           <p className="text-[10px] text-slate-400 mt-0.5">Proof of payment on file</p>
                         </div>
                       </div>
@@ -1012,9 +1012,9 @@ export default function SalesView({
                   )}
 
                   {noteText && (
-                    <div className="pt-4 border-t border-slate-100 dark:border-slate-800 text-xs">
+                    <div className="pt-4 border-t border-[#CFE1F5] dark:border-[#CFE1F5] text-xs">
                       <p className="text-slate-400 font-medium">Auditor Notes</p>
-                      <p className="text-slate-700 dark:text-slate-300 mt-0.5 italic bg-slate-50 dark:bg-slate-800/50 p-2.5 rounded-lg border border-slate-100 dark:border-slate-800">&ldquo;{noteText}&rdquo;</p>
+                      <p className="text-[#0c4275] dark:text-[#0c4275] mt-0.5 italic bg-[#FCFEFF] dark:bg-[#FCFEFF] p-2.5 rounded-lg border border-[#D8E6F3] dark:border-[#D8E6F3]">&ldquo;{noteText}&rdquo;</p>
                     </div>
                   )}
                 </div>
@@ -1073,10 +1073,10 @@ export default function SalesView({
         </div>
 
         {/* Right column: Order Summary Receipt (span 5) */}
-        <div id="checkout-invoice-card" className="lg:col-span-5 bg-slate-50 dark:bg-slate-950 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 sticky top-6 shadow-sm">
-          <div className="flex items-center gap-2 pb-4 border-b border-slate-200 dark:border-slate-800/80 mb-6">
-            <Receipt className="text-slate-400" size={16} />
-            <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider">Live Checkout Invoice</h3>
+        <div id="checkout-invoice-card" className="lg:col-span-5 bg-[#FCFEFF] dark:bg-[#FCFEFF] p-6 rounded-2xl border border-[#D8E6F3] dark:border-[#D8E6F3] sticky top-6 shadow-sm">
+          <div className="flex items-center gap-2 pb-4 border-b border-[#D8E6F3] dark:border-[#D8E6F3] mb-6">
+            <Receipt className="text-[#154A7D] dark:text-[#154A7D]" size={16} />
+            <h3 className="text-xs font-bold text-[#0c4275] dark:text-[#0c4275] uppercase tracking-wider">Live Checkout Invoice</h3>
           </div>
 
           {/* Client summary */}
@@ -1088,18 +1088,18 @@ export default function SalesView({
                 <p className="text-[10px] text-slate-400">{activeCustomer?.companyName}</p>
               </div>
               {activeCustomer && (
-                <span className="text-[10px] bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-mono px-2 py-0.5 rounded">
+                <span className="text-[10px] bg-[#F0F7FF] dark:bg-[#F0F7FF] text-[#0c4275] dark:text-[#0c4275] font-mono px-2 py-0.5 rounded border border-[#CFE1F5] dark:border-[#CFE1F5]">
                   {activeCustomer.id}
                 </span>
               )}
             </div>
 
             {/* Ad account summary */}
-            <div className="pt-4 border-t border-dashed border-slate-200 dark:border-slate-800/80">
+            <div className="pt-4 border-t border-dashed border-[#D8E6F3] dark:border-[#D8E6F3]">
               <p className="text-xs text-slate-400 font-medium">Publisher Ad Account:</p>
               {activeAccount ? (
-                <div className="mt-2 p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
-                  <div className="flex justify-between items-center text-xs font-bold text-slate-800 dark:text-slate-200">
+                <div className="mt-2 p-3 rounded-xl bg-[#F7FBFF] dark:bg-[#F7FBFF] border border-[#D8E6F3] dark:border-[#D8E6F3]">
+                  <div className="flex justify-between items-center text-xs font-bold text-[#0c4275] dark:text-[#0c4275]">
                     <span className="truncate max-w-[200px]">{activeAccount.adAccountName}</span>
                     <span className={`text-[10px] px-1.5 py-0.5 rounded ${
                       platform === 'Facebook' ? 'bg-blue-50 dark:bg-blue-900/20' :
@@ -1117,7 +1117,7 @@ export default function SalesView({
             </div>
 
             {/* Calculated Pricing Ledger (Shopify checkout total) */}
-            <div className="pt-6 border-t border-slate-200 dark:border-slate-800/80 space-y-2">
+            <div className="pt-6 border-t border-[#D8E6F3] dark:border-[#D8E6F3] space-y-2">
               <div className="flex justify-between text-xs text-slate-500">
                 <span>Topup Value (USD)</span>
                 <span className="font-semibold text-slate-700 dark:text-slate-300">${topupAmountUSD.toFixed(1)}</span>
@@ -1130,14 +1130,14 @@ export default function SalesView({
                 <span>Payment Gate Fee</span>
                 <span className="text-slate-400">৳0.00</span>
               </div>
-              <div className="flex justify-between text-sm font-bold text-slate-900 dark:text-white pt-2 border-t border-slate-100 dark:border-slate-800/50">
+              <div className="flex justify-between text-sm font-bold text-[#0c4275] dark:text-[#0c4275] pt-2 border-t border-[#E6EEF6] dark:border-[#E6EEF6]">
                 <span>Total Calculated BDT</span>
                 <span>৳{totalBDT.toLocaleString()}</span>
               </div>
             </div>
 
             {/* BDT Paid & Remaining Due tracking */}
-            <div className="pt-4 border-t border-dashed border-slate-200 dark:border-slate-800/80 space-y-2 text-xs">
+            <div className="pt-4 border-t border-dashed border-[#D8E6F3] dark:border-[#D8E6F3] space-y-2 text-xs">
               <div className="flex justify-between text-slate-500">
                 <span>Paid Amount BDT</span>
                 <span className="font-semibold text-emerald-600">৳{paidBDT.toLocaleString()}</span>
@@ -1151,7 +1151,7 @@ export default function SalesView({
             </div>
 
             {/* Payment security info */}
-            <div className="pt-6 border-t border-slate-200 dark:border-slate-800/80 flex items-center gap-2 text-[10px] text-slate-400">
+            <div className="pt-6 border-t border-[#D8E6F3] dark:border-[#D8E6F3] flex items-center gap-2 text-[10px] text-slate-400">
               <Shield size={14} className="text-emerald-500 flex-shrink-0" />
               <span>ERP transaction logged immediately. All BDT to BDT conversions verified against Eastern Bank Ltd (EBL) exchange rates.</span>
             </div>

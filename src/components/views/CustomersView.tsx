@@ -353,18 +353,18 @@ export default function CustomersView({
               </div>
 
               {/* Total Topup & Credit Limit Overview Card - Light Green Theme */}
-              <div className="mt-4 grid grid-cols-3 gap-3 p-3.5 sm:p-4 rounded-xl border border-emerald-200/80 dark:border-emerald-800/50 bg-[#e8f5e9] dark:bg-emerald-950/40 text-slate-800 dark:text-slate-100 shadow-xs">
+              <div className="mt-4 grid grid-cols-3 gap-3 p-3.5 sm:p-4 rounded-xl border border-[#CFEBDD] dark:border-[#CFEBDD] bg-[#F1FBF5] dark:bg-[#F1FBF5] text-[#0c4275] dark:text-[#0c4275] shadow-xs">
                 <div>
-                  <p className="text-[10px] uppercase font-bold text-emerald-800/80 dark:text-emerald-300/80 tracking-wider">TOTAL TOPUP (USD)</p>
-                  <p className="text-base sm:text-lg font-extrabold text-[#1F5E98] dark:text-blue-400 mt-0.5">${getCustomerTotalTopupUSD(selectedCustomer.id).toLocaleString()}</p>
+                  <p className="text-[10px] uppercase font-bold text-[#0c4275]/75 dark:text-[#0c4275]/75 tracking-wider">TOTAL TOPUP (USD)</p>
+                  <p className="text-base sm:text-lg font-extrabold text-[#0c4275] dark:text-[#0c4275] mt-0.5">${getCustomerTotalTopupUSD(selectedCustomer.id).toLocaleString()}</p>
                 </div>
                 <div>
-                  <p className="text-[10px] uppercase font-bold text-emerald-800/80 dark:text-emerald-300/80 tracking-wider">TOTAL TOPUP (BDT)</p>
-                  <p className="text-base sm:text-lg font-extrabold text-slate-900 dark:text-white mt-0.5">৳{getCustomerTotalTopupBDT(selectedCustomer.id).toLocaleString()}</p>
+                  <p className="text-[10px] uppercase font-bold text-[#0c4275]/75 dark:text-[#0c4275]/75 tracking-wider">TOTAL TOPUP (BDT)</p>
+                  <p className="text-base sm:text-lg font-extrabold text-[#0c4275] dark:text-[#0c4275] mt-0.5">৳{getCustomerTotalTopupBDT(selectedCustomer.id).toLocaleString()}</p>
                 </div>
                 <div>
-                  <p className="text-[10px] uppercase font-bold text-emerald-800/80 dark:text-emerald-300/80 tracking-wider">CREDIT LIMIT</p>
-                  <p className="text-base sm:text-lg font-extrabold text-emerald-950 dark:text-emerald-100 mt-0.5">${selectedCustomer.creditLimitUSD.toLocaleString()}</p>
+                  <p className="text-[10px] uppercase font-bold text-[#0c4275]/75 dark:text-[#0c4275]/75 tracking-wider">CREDIT LIMIT</p>
+                  <p className="text-base sm:text-lg font-extrabold text-[#0c4275] dark:text-[#0c4275] mt-0.5">${selectedCustomer.creditLimitUSD.toLocaleString()}</p>
                 </div>
               </div>
             </div>
@@ -541,7 +541,7 @@ export default function CustomersView({
                       onChange={(e) => setNotesText(e.target.value)}
                     />
                   ) : (
-                    <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/30 border border-slate-100 dark:border-slate-800 text-xs text-slate-600 dark:text-slate-400 leading-relaxed min-h-[100px]">
+                    <div className="p-4 rounded-xl bg-[#F7FBFF] dark:bg-[#F7FBFF] border border-[#D8E6F3] dark:border-[#D8E6F3] text-xs text-[#0c4275] dark:text-[#0c4275] leading-relaxed min-h-[100px]">
                       {selectedCustomer.notes ? (
                         <p className="whitespace-pre-wrap">{selectedCustomer.notes}</p>
                       ) : (

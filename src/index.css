@@ -1035,6 +1035,29 @@ svg path {
   color: #0c4275 !important;
 }
 
+/* 14.1 Readable table headers outside the sidebar */
+#main-content-pane table thead,
+#main-content-pane table thead tr,
+#main-content-pane table thead th {
+  background-color: #154A7D !important;
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+}
+
+#main-content-pane table thead th *,
+#main-content-pane table thead th span,
+#main-content-pane table thead th label,
+#main-content-pane table thead th svg {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+#main-content-pane table thead th:hover,
+#main-content-pane table thead th:hover * {
+  background-color: #0c4275 !important;
+  color: #FFF7ED !important;
+}
+
 /* ==========================================
    15. Two-Color Button System Outside Sidebar
    ========================================== */

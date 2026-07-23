@@ -132,61 +132,61 @@ export function InvoicesView({ invoices, customers, onUpdateInvoice }: InvoicesV
       {/* Top Short Overview Cards */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Current Month Overview Card */}
-        <div className="bg-blue-50/80 dark:bg-blue-950/40 p-5 rounded-2xl border border-blue-200 dark:border-blue-800/60 space-y-3">
-          <div className="flex justify-between items-center border-b border-blue-200/60 dark:border-blue-800/60 pb-2">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-blue-800 dark:text-blue-300 flex items-center gap-1.5">
-              <Calendar size={14} className="text-blue-600 dark:text-blue-400" />
+        <div className="bg-[#F0F7FF] dark:bg-[#F0F7FF] p-5 rounded-2xl border border-[#CFE1F5] dark:border-[#CFE1F5] space-y-3">
+          <div className="flex justify-between items-center border-b border-[#CFE1F5] dark:border-[#CFE1F5] pb-2">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-[#0c4275] dark:text-[#0c4275] flex items-center gap-1.5">
+              <Calendar size={14} className="text-[#154A7D] dark:text-[#154A7D]" />
               Current Month ({activeMonthStr})
             </h3>
-            <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-blue-100 dark:bg-blue-900/60 text-blue-800 dark:text-blue-200 border border-blue-200 dark:border-blue-800">
+            <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-[#FCFEFF] dark:bg-[#FCFEFF] text-[#0c4275] dark:text-[#0c4275] border border-[#CFE1F5] dark:border-[#CFE1F5]">
               Monthly Summary
             </span>
           </div>
           <div className="grid grid-cols-3 gap-3 pt-1">
-            <div className="bg-white dark:bg-slate-800 p-3.5 rounded-xl border border-blue-200/80 dark:border-blue-900/50 shadow-xs">
-              <p className="text-[10px] font-bold text-slate-700 dark:text-slate-200 uppercase tracking-wide">Total Invoices</p>
-              <p className="text-xl font-black text-blue-700 dark:text-blue-300 mt-1">{currentMonthInvoicesCount}</p>
-              <p className="text-[9px] font-semibold text-slate-500 dark:text-slate-400">Month records</p>
+            <div className="bg-[#FCFEFF] dark:bg-[#FCFEFF] p-3.5 rounded-xl border border-[#D8E6F3] dark:border-[#D8E6F3] shadow-xs">
+              <p className="text-[10px] font-bold text-[#0c4275]/75 dark:text-[#0c4275]/75 uppercase tracking-wide">Total Invoices</p>
+              <p className="text-xl font-black text-[#0c4275] dark:text-[#0c4275] mt-1">{currentMonthInvoicesCount}</p>
+              <p className="text-[9px] font-semibold text-[#0c4275]/65 dark:text-[#0c4275]/65">Month records</p>
             </div>
-            <div className="bg-white dark:bg-slate-800 p-3.5 rounded-xl border border-blue-200/80 dark:border-blue-900/50 shadow-xs">
-              <p className="text-[10px] font-bold text-slate-700 dark:text-slate-200 uppercase tracking-wide">Total Sales (USD &amp; BDT)</p>
-              <p className="text-sm font-black text-slate-900 dark:text-white mt-1">${currentMonthUSD.toLocaleString()}</p>
-              <p className="text-[10px] font-bold text-blue-600 dark:text-blue-400">৳{currentMonthBDT.toLocaleString()}</p>
+            <div className="bg-[#FCFEFF] dark:bg-[#FCFEFF] p-3.5 rounded-xl border border-[#D8E6F3] dark:border-[#D8E6F3] shadow-xs">
+              <p className="text-[10px] font-bold text-[#0c4275]/75 dark:text-[#0c4275]/75 uppercase tracking-wide">Total Sales (USD &amp; BDT)</p>
+              <p className="text-sm font-black text-[#0c4275] dark:text-[#0c4275] mt-1">${currentMonthUSD.toLocaleString()}</p>
+              <p className="text-[10px] font-bold text-[#0c4275] dark:text-[#0c4275]">৳{currentMonthBDT.toLocaleString()}</p>
             </div>
-            <div className="bg-white dark:bg-slate-800 p-3.5 rounded-xl border border-blue-200/80 dark:border-blue-900/50 shadow-xs">
-              <p className="text-[10px] font-bold text-slate-700 dark:text-slate-200 uppercase tracking-wide">Total Other Service Sales</p>
-              <p className="text-sm font-black text-slate-900 dark:text-white mt-1">${currentMonthOthersUSD.toLocaleString()}</p>
-              <p className="text-[10px] font-bold text-blue-600 dark:text-blue-400">৳{currentMonthOthersBDT.toLocaleString()}</p>
+            <div className="bg-[#FCFEFF] dark:bg-[#FCFEFF] p-3.5 rounded-xl border border-[#D8E6F3] dark:border-[#D8E6F3] shadow-xs">
+              <p className="text-[10px] font-bold text-[#0c4275]/75 dark:text-[#0c4275]/75 uppercase tracking-wide">Total Other Service Sales</p>
+              <p className="text-sm font-black text-[#0c4275] dark:text-[#0c4275] mt-1">${currentMonthOthersUSD.toLocaleString()}</p>
+              <p className="text-[10px] font-bold text-[#0c4275] dark:text-[#0c4275]">৳{currentMonthOthersBDT.toLocaleString()}</p>
             </div>
           </div>
         </div>
 
         {/* Daily Overview Card */}
-        <div className="bg-emerald-50/80 dark:bg-emerald-950/40 p-5 rounded-2xl border border-emerald-200 dark:border-emerald-800/60 space-y-3">
-          <div className="flex justify-between items-center border-b border-emerald-200/60 dark:border-emerald-800/60 pb-2">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-emerald-800 dark:text-emerald-300 flex items-center gap-1.5">
-              <Clock size={14} className="text-emerald-600 dark:text-emerald-400" />
+        <div className="bg-[#F1FBF5] dark:bg-[#F1FBF5] p-5 rounded-2xl border border-[#CFEBDD] dark:border-[#CFEBDD] space-y-3">
+          <div className="flex justify-between items-center border-b border-[#CFEBDD] dark:border-[#CFEBDD] pb-2">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-[#0c4275] dark:text-[#0c4275] flex items-center gap-1.5">
+              <Clock size={14} className="text-[#154A7D] dark:text-[#154A7D]" />
               Daily ({activeTodayStr})
             </h3>
-            <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-emerald-100 dark:bg-emerald-900/60 text-emerald-800 dark:text-emerald-200 border border-emerald-200 dark:border-emerald-800">
+            <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-[#FCFEFF] dark:bg-[#FCFEFF] text-[#0c4275] dark:text-[#0c4275] border border-[#CFEBDD] dark:border-[#CFEBDD]">
               Today Summary
             </span>
           </div>
           <div className="grid grid-cols-3 gap-3 pt-1">
-            <div className="bg-white dark:bg-slate-800 p-3.5 rounded-xl border border-emerald-200/80 dark:border-emerald-900/50 shadow-xs">
-              <p className="text-[10px] font-bold text-slate-700 dark:text-slate-200 uppercase tracking-wide">Total Invoices</p>
-              <p className="text-xl font-black text-emerald-700 dark:text-emerald-300 mt-1">{dailyInvoicesCount}</p>
-              <p className="text-[9px] font-semibold text-slate-500 dark:text-slate-400">Today records</p>
+            <div className="bg-[#FCFEFF] dark:bg-[#FCFEFF] p-3.5 rounded-xl border border-[#D8E6F3] dark:border-[#D8E6F3] shadow-xs">
+              <p className="text-[10px] font-bold text-[#0c4275]/75 dark:text-[#0c4275]/75 uppercase tracking-wide">Total Invoices</p>
+              <p className="text-xl font-black text-[#0c4275] dark:text-[#0c4275] mt-1">{dailyInvoicesCount}</p>
+              <p className="text-[9px] font-semibold text-[#0c4275]/65 dark:text-[#0c4275]/65">Today records</p>
             </div>
-            <div className="bg-white dark:bg-slate-800 p-3.5 rounded-xl border border-emerald-200/80 dark:border-emerald-900/50 shadow-xs">
-              <p className="text-[10px] font-bold text-slate-700 dark:text-slate-200 uppercase tracking-wide">Total Sell (USD &amp; BDT)</p>
-              <p className="text-sm font-black text-slate-900 dark:text-white mt-1">${dailyUSD.toLocaleString()}</p>
-              <p className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400">৳{dailyBDT.toLocaleString()}</p>
+            <div className="bg-[#FCFEFF] dark:bg-[#FCFEFF] p-3.5 rounded-xl border border-[#D8E6F3] dark:border-[#D8E6F3] shadow-xs">
+              <p className="text-[10px] font-bold text-[#0c4275]/75 dark:text-[#0c4275]/75 uppercase tracking-wide">Total Sell (USD &amp; BDT)</p>
+              <p className="text-sm font-black text-[#0c4275] dark:text-[#0c4275] mt-1">${dailyUSD.toLocaleString()}</p>
+              <p className="text-[10px] font-bold text-[#0c4275] dark:text-[#0c4275]">৳{dailyBDT.toLocaleString()}</p>
             </div>
-            <div className="bg-white dark:bg-slate-800 p-3.5 rounded-xl border border-emerald-200/80 dark:border-emerald-900/50 shadow-xs">
-              <p className="text-[10px] font-bold text-slate-700 dark:text-slate-200 uppercase tracking-wide">Total Others Service Sell</p>
-              <p className="text-sm font-black text-slate-900 dark:text-white mt-1">${dailyOthersUSD.toLocaleString()}</p>
-              <p className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400">৳{dailyOthersBDT.toLocaleString()}</p>
+            <div className="bg-[#FCFEFF] dark:bg-[#FCFEFF] p-3.5 rounded-xl border border-[#D8E6F3] dark:border-[#D8E6F3] shadow-xs">
+              <p className="text-[10px] font-bold text-[#0c4275]/75 dark:text-[#0c4275]/75 uppercase tracking-wide">Total Others Service Sell</p>
+              <p className="text-sm font-black text-[#0c4275] dark:text-[#0c4275] mt-1">${dailyOthersUSD.toLocaleString()}</p>
+              <p className="text-[10px] font-bold text-[#0c4275] dark:text-[#0c4275]">৳{dailyOthersBDT.toLocaleString()}</p>
             </div>
           </div>
         </div>
@@ -1297,31 +1297,31 @@ export function SeriesView({ series, adAccounts, onAddSeries, onUpdateSeries }: 
               </div>
 
               <div className="grid grid-cols-2 gap-3">
-                <div className="bg-blue-50/80 dark:bg-blue-950/40 p-3.5 rounded-xl border border-blue-200/80 dark:border-blue-900/50 shadow-xs">
-                  <span className="text-[10px] uppercase font-bold text-blue-700 dark:text-blue-300 tracking-wider block mb-1">Total Ad Accounts</span>
-                  <span className="text-2xl font-black text-blue-700 dark:text-blue-300">{linkedAccounts.length}</span>
+                <div className="bg-[#F0F7FF] dark:bg-[#F0F7FF] p-3.5 rounded-xl border border-[#CFE1F5] dark:border-[#CFE1F5] shadow-xs">
+                  <span className="text-[10px] uppercase font-bold text-[#0c4275]/75 dark:text-[#0c4275]/75 tracking-wider block mb-1">Total Ad Accounts</span>
+                  <span className="text-2xl font-black text-[#0c4275] dark:text-[#0c4275]">{linkedAccounts.length}</span>
                 </div>
-                <div className="bg-emerald-50/80 dark:bg-emerald-950/40 p-3.5 rounded-xl border border-emerald-200/80 dark:border-emerald-900/50 shadow-xs">
-                  <span className="text-[10px] uppercase font-bold text-emerald-700 dark:text-emerald-300 tracking-wider block mb-1">No of Available</span>
-                  <span className="text-2xl font-black text-emerald-700 dark:text-emerald-300">
+                <div className="bg-[#F1FBF5] dark:bg-[#F1FBF5] p-3.5 rounded-xl border border-[#CFEBDD] dark:border-[#CFEBDD] shadow-xs">
+                  <span className="text-[10px] uppercase font-bold text-[#0c4275]/75 dark:text-[#0c4275]/75 tracking-wider block mb-1">No of Available</span>
+                  <span className="text-2xl font-black text-[#0c4275] dark:text-[#0c4275]">
                     {linkedAccounts.filter(a => a.accountStatus === 'Available').length}
                   </span>
                 </div>
-                <div className="bg-rose-50/80 dark:bg-rose-950/40 p-3.5 rounded-xl border border-rose-200/80 dark:border-rose-900/50 shadow-xs">
-                  <span className="text-[10px] uppercase font-bold text-rose-700 dark:text-rose-300 tracking-wider block mb-1">No of Disable</span>
-                  <span className="text-2xl font-black text-rose-700 dark:text-rose-300">
+                <div className="bg-[#FFF1F2] dark:bg-[#FFF1F2] p-3.5 rounded-xl border border-[#F8D6DC] dark:border-[#F8D6DC] shadow-xs">
+                  <span className="text-[10px] uppercase font-bold text-[#0c4275]/75 dark:text-[#0c4275]/75 tracking-wider block mb-1">No of Disable</span>
+                  <span className="text-2xl font-black text-[#0c4275] dark:text-[#0c4275]">
                     {linkedAccounts.filter(a => a.accountStatus === 'Disabled' || a.accountStatus === 'Disable').length}
                   </span>
                 </div>
-                <div className="bg-amber-50/80 dark:bg-amber-950/40 p-3.5 rounded-xl border border-amber-200/80 dark:border-amber-900/50 shadow-xs">
-                  <span className="text-[10px] uppercase font-bold text-amber-700 dark:text-amber-300 tracking-wider block mb-1">No of Sold</span>
-                  <span className="text-2xl font-black text-amber-700 dark:text-amber-300">
+                <div className="bg-[#FFF7ED] dark:bg-[#FFF7ED] p-3.5 rounded-xl border border-[#FBD9B9] dark:border-[#FBD9B9] shadow-xs">
+                  <span className="text-[10px] uppercase font-bold text-[#0c4275]/75 dark:text-[#0c4275]/75 tracking-wider block mb-1">No of Sold</span>
+                  <span className="text-2xl font-black text-[#0c4275] dark:text-[#0c4275]">
                     {linkedAccounts.filter(a => a.accountStatus === 'Sold').length}
                   </span>
                 </div>
-                <div className="bg-slate-100 dark:bg-slate-800/50 p-3.5 rounded-xl border border-slate-300/80 dark:border-slate-700/50 shadow-xs col-span-2">
-                  <span className="text-[10px] uppercase font-bold text-slate-700 dark:text-slate-300 tracking-wider block mb-1">No of Terminated</span>
-                  <span className="text-2xl font-black text-slate-700 dark:text-slate-200">
+                <div className="bg-[#F7FBFF] dark:bg-[#F7FBFF] p-3.5 rounded-xl border border-[#D8E6F3] dark:border-[#D8E6F3] shadow-xs col-span-2">
+                  <span className="text-[10px] uppercase font-bold text-[#0c4275]/75 dark:text-[#0c4275]/75 tracking-wider block mb-1">No of Terminated</span>
+                  <span className="text-2xl font-black text-[#0c4275] dark:text-[#0c4275]">
                     {linkedAccounts.filter(a => a.accountStatus === 'Terminated').length}
                   </span>
                 </div>
@@ -1340,7 +1340,7 @@ export function SeriesView({ series, adAccounts, onAddSeries, onUpdateSeries }: 
                     {linkedAccounts.map((acc, index) => (
                       <div 
                         key={index}
-                        className="p-3 bg-slate-50 dark:bg-slate-950 rounded-xl border border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs"
+                        className="p-3 bg-[#FCFEFF] dark:bg-[#FCFEFF] rounded-xl border border-[#D8E6F3] dark:border-[#D8E6F3] flex items-center justify-between text-xs"
                       >
                         <div className="min-w-0 mr-2">
                           <p className="font-bold text-slate-800 dark:text-slate-200 truncate">{acc.adAccountName}</p>
@@ -1621,42 +1621,42 @@ export function VendorsView({ vendors, onAddVendor, onUpdateVendor }: VendorsVie
             </div>
 
             <div className="grid grid-cols-2 gap-3">
-              <div className="p-3.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/60">
+              <div className="p-3.5 rounded-xl bg-[#F1FBF5] dark:bg-[#F1FBF5] border border-[#CFEBDD] dark:border-[#CFEBDD]">
                 <div className="flex items-center gap-1.5 mb-1.5">
-                  <DollarSign size={12} className="text-emerald-600 dark:text-emerald-400" />
-                  <p className="text-[10px] uppercase font-bold text-emerald-700 dark:text-emerald-300">Paid In (Current Month)</p>
+                  <DollarSign size={12} className="text-[#154A7D] dark:text-[#154A7D]" />
+                  <p className="text-[10px] uppercase font-bold text-[#0c4275]/75 dark:text-[#0c4275]/75">Paid In (Current Month)</p>
                 </div>
-                <p className="text-sm font-extrabold text-emerald-700 dark:text-emerald-300">
+                <p className="text-sm font-extrabold text-[#0c4275] dark:text-[#0c4275]">
                   ${vendorPaidThisMonth.toLocaleString()}
                 </p>
               </div>
 
-              <div className="p-3.5 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60">
+              <div className="p-3.5 rounded-xl bg-[#FFF7ED] dark:bg-[#FFF7ED] border border-[#FBD9B9] dark:border-[#FBD9B9]">
                 <div className="flex items-center gap-1.5 mb-1.5">
-                  <DollarSign size={12} className="text-amber-600 dark:text-amber-400" />
-                  <p className="text-[10px] uppercase font-bold text-amber-700 dark:text-amber-300">Total Paid (All-time)</p>
+                  <DollarSign size={12} className="text-[#154A7D] dark:text-[#154A7D]" />
+                  <p className="text-[10px] uppercase font-bold text-[#0c4275]/75 dark:text-[#0c4275]/75">Total Paid (All-time)</p>
                 </div>
-                <p className="text-sm font-extrabold text-amber-700 dark:text-amber-300">
+                <p className="text-sm font-extrabold text-[#0c4275] dark:text-[#0c4275]">
                   ${vendorTotalPaid.toLocaleString()}
                 </p>
               </div>
             </div>
 
             <div className="grid grid-cols-2 gap-3">
-              <div className="p-3.5 rounded-xl bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800/60">
+              <div className="p-3.5 rounded-xl bg-[#F0F7FF] dark:bg-[#F0F7FF] border border-[#CFE1F5] dark:border-[#CFE1F5]">
                 <div className="flex items-center gap-1.5 mb-1.5">
-                  <User size={12} className="text-blue-600 dark:text-blue-400" />
-                  <p className="text-[10px] uppercase font-bold text-blue-700 dark:text-blue-300">Vendor ID</p>
+                  <User size={12} className="text-[#154A7D] dark:text-[#154A7D]" />
+                  <p className="text-[10px] uppercase font-bold text-[#0c4275]/75 dark:text-[#0c4275]/75">Vendor ID</p>
                 </div>
-                <p className="text-sm font-extrabold font-mono text-[#1F5E98] dark:text-[#5dade2] truncate" title={activeVendor.id}>
+                <p className="text-sm font-extrabold font-mono text-[#0c4275] dark:text-[#0c4275] truncate" title={activeVendor.id}>
                   {activeVendor.id}
                 </p>
               </div>
 
-              <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-950/40 border border-slate-200 dark:border-slate-800/60">
+              <div className="p-3.5 rounded-xl bg-[#FCFEFF] dark:bg-[#FCFEFF] border border-[#D8E6F3] dark:border-[#D8E6F3]">
                 <div className="flex items-center gap-1.5 mb-1.5">
-                  <Check size={12} className="text-slate-600 dark:text-slate-400" />
-                  <p className="text-[10px] uppercase font-bold text-slate-700 dark:text-slate-300">Status</p>
+                  <Check size={12} className="text-[#154A7D] dark:text-[#154A7D]" />
+                  <p className="text-[10px] uppercase font-bold text-[#0c4275]/75 dark:text-[#0c4275]/75">Status</p>
                 </div>
                 <span
                   className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-extrabold border ${
@@ -3023,8 +3023,8 @@ export function InsightsView({ invoices, adAccounts, vendors, cards = [], series
                         onClick={() => setActiveSelectedAccId(acc.adAccountId)}
                         className={`w-full text-left p-3 flex flex-col gap-1 transition-all cursor-pointer ${
                           isActive
-                            ? 'bg-blue-50/70 dark:bg-slate-800/60 border-l-4 border-[#1F5E98]'
-                            : 'hover:bg-slate-50 dark:hover:bg-slate-800/30'
+                            ? 'bg-[#F0F7FF] dark:bg-[#F0F7FF] border-l-4 border-[#1F5E98]'
+                            : 'hover:bg-[#F7FBFF] dark:hover:bg-[#F7FBFF]'
                         }`}
                       >
                         <div className="flex justify-between items-start gap-2 w-full">
@@ -3056,7 +3056,7 @@ export function InsightsView({ invoices, adAccounts, vendors, cards = [], series
               <div className="space-y-6">
                 
                 {/* Account Details Header */}
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-xl bg-slate-50 dark:bg-slate-800/30 border border-slate-200 dark:border-slate-800">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-xl bg-[#F7FBFF] dark:bg-[#F7FBFF] border border-[#D8E6F3] dark:border-[#D8E6F3]">
                   <div className="space-y-1">
                     <div className="flex items-center gap-2">
                       <span className="text-sm font-black text-slate-900 dark:text-white">{activeAcc.adAccountName}</span>
@@ -3091,24 +3091,24 @@ export function InsightsView({ invoices, adAccounts, vendors, cards = [], series
                 {/* Stat Cards Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   {/* Total USD Card */}
-                  <div className="p-4 rounded-xl border border-[#F68B2D]/20 bg-[#F68B2D]/5 dark:bg-[#F68B2D]/10 space-y-1">
-                    <span className="text-[10px] font-black text-[#F68B2D] uppercase tracking-wider block">Total USD Top-up</span>
-                    <h4 className="text-xl font-black text-slate-900 dark:text-white">${totalUSD.toLocaleString()}</h4>
-                    <span className="text-[9px] text-slate-400 font-medium block">Cumulative loaded sum</span>
+                  <div className="p-4 rounded-xl border border-[#FBD9B9] dark:border-[#FBD9B9] bg-[#FFF7ED] dark:bg-[#FFF7ED] space-y-1">
+                    <span className="text-[10px] font-black text-[#0c4275]/75 dark:text-[#0c4275]/75 uppercase tracking-wider block">Total USD Top-up</span>
+                    <h4 className="text-xl font-black text-[#0c4275] dark:text-[#0c4275]">${totalUSD.toLocaleString()}</h4>
+                    <span className="text-[9px] text-[#0c4275]/65 dark:text-[#0c4275]/65 font-medium block">Cumulative loaded sum</span>
                   </div>
 
                   {/* Total BDT Card */}
-                  <div className="p-4 rounded-xl border border-[#1F5E98]/20 bg-[#1F5E98]/5 dark:bg-[#1F5E98]/10 space-y-1">
-                    <span className="text-[10px] font-black text-[#1F5E98] dark:text-blue-400 uppercase tracking-wider block">Total BDT Spent</span>
-                    <h4 className="text-xl font-black text-slate-900 dark:text-white">৳{totalBDT.toLocaleString()}</h4>
-                    <span className="text-[9px] text-slate-400 font-medium block">Cumulative local spent</span>
+                  <div className="p-4 rounded-xl border border-[#CFE1F5] dark:border-[#CFE1F5] bg-[#F0F7FF] dark:bg-[#F0F7FF] space-y-1">
+                    <span className="text-[10px] font-black text-[#0c4275]/75 dark:text-[#0c4275]/75 uppercase tracking-wider block">Total BDT Spent</span>
+                    <h4 className="text-xl font-black text-[#0c4275] dark:text-[#0c4275]">৳{totalBDT.toLocaleString()}</h4>
+                    <span className="text-[9px] text-[#0c4275]/65 dark:text-[#0c4275]/65 font-medium block">Cumulative local spent</span>
                   </div>
 
                   {/* Average Exchange Rate Card */}
-                  <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 space-y-1">
-                    <span className="text-[10px] font-black text-slate-500 uppercase tracking-wider block">Avg Exchange Rate</span>
-                    <h4 className="text-xl font-black text-slate-900 dark:text-white">৳{averageRate.toFixed(2)}</h4>
-                    <span className="text-[9px] text-slate-400 font-medium block">Weighted BDT per USD</span>
+                  <div className="p-4 rounded-xl border border-[#CFEBDD] dark:border-[#CFEBDD] bg-[#F1FBF5] dark:bg-[#F1FBF5] space-y-1">
+                    <span className="text-[10px] font-black text-[#0c4275]/75 dark:text-[#0c4275]/75 uppercase tracking-wider block">Avg Exchange Rate</span>
+                    <h4 className="text-xl font-black text-[#0c4275] dark:text-[#0c4275]">৳{averageRate.toFixed(2)}</h4>
+                    <span className="text-[9px] text-[#0c4275]/65 dark:text-[#0c4275]/65 font-medium block">Weighted BDT per USD</span>
                   </div>
                 </div>
 

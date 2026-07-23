@@ -101,6 +101,57 @@ export default function App() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [darkMode]);
 
+  useEffect(() => {
+    const root = document.getElementById('main-content-pane');
+    if (!root) return;
+
+    let animationFrame = 0;
+    const syncButtonHoverStyles = () => {
+      const buttons = root.querySelectorAll<HTMLButtonElement>('button');
+
+      buttons.forEach((button) => {
+        if (button.matches(':hover')) return;
+
+        const style = window.getComputedStyle(button);
+        button.style.setProperty('--button-hover-bg', style.backgroundColor);
+        button.style.setProperty('--button-hover-color', style.color);
+        button.style.setProperty('--button-hover-border', style.borderColor);
+        button.style.setProperty('--button-hover-opacity', style.opacity);
+        button.style.setProperty('--button-hover-shadow', style.boxShadow);
+
+        button.querySelectorAll<HTMLElement>('*').forEach((child) => {
+          if (child.matches(':hover')) return;
+          child.style.setProperty('--button-child-hover-color', window.getComputedStyle(child).color);
+        });
+      });
+    };
+
+    const scheduleSync = () => {
+      cancelAnimationFrame(animationFrame);
+      animationFrame = requestAnimationFrame(syncButtonHoverStyles);
+    };
+
+    scheduleSync();
+
+    const observer = new MutationObserver(scheduleSync);
+    observer.observe(root, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['class', 'disabled', 'aria-expanded', 'data-state'],
+    });
+
+    root.addEventListener('pointerleave', scheduleSync, true);
+    window.addEventListener('resize', scheduleSync);
+
+    return () => {
+      cancelAnimationFrame(animationFrame);
+      observer.disconnect();
+      root.removeEventListener('pointerleave', scheduleSync, true);
+      window.removeEventListener('resize', scheduleSync);
+    };
+  }, []);
+
   const toggleTheme = () => {
     setDarkMode(!darkMode);
     triggerToast('success', 'Theme Updated', `Toggled to ${!darkMode ? 'Dark' : 'Light'} Mode`);
@@ -442,7 +493,7 @@ export default function App() {
       />
 
       {/* Main Content Pane */}
-      <div className="flex-1 flex flex-col min-w-0 overflow-y-auto h-screen">
+      <div id="main-content-pane" className="flex-1 flex flex-col min-w-0 overflow-y-auto h-screen">
         
         {/* Global Header */}
         <Header 

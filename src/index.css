@@ -216,26 +216,29 @@ input::placeholder,
   color: #718096 !important;
 }
 
-/* 5 & 6. Core Text Color: SOLID DEEP BLACK EVERYWHERE FOR MAXIMUM CONTRAST */
-/* We target all text-containing elements to be solid deep black so they stand out clearly against the soft gradient background. */
-body,
-#app-root-container,
-div,
-p,
-span,
-td,
-th,
-label,
-li,
-h1, h2, h3, h4, h5, h6,
-a,
-small,
-strong,
-select,
-input,
-textarea,
-option {
-  color: #000000 !important;
+/* 5 & 6. Core Text Color: scoped to the main app pane so sidebar keeps its own contrast system. */
+#main-content-pane,
+#main-content-pane div,
+#main-content-pane p,
+#main-content-pane span,
+#main-content-pane td,
+#main-content-pane th,
+#main-content-pane label,
+#main-content-pane li,
+#main-content-pane h1,
+#main-content-pane h2,
+#main-content-pane h3,
+#main-content-pane h4,
+#main-content-pane h5,
+#main-content-pane h6,
+#main-content-pane a,
+#main-content-pane small,
+#main-content-pane strong,
+#main-content-pane select,
+#main-content-pane input,
+#main-content-pane textarea,
+#main-content-pane option {
+  color: #0c4275 !important;
 }
 
 /* 7. REVERT/RETAIN SPECIFIC TEXT COLORS FOR BADGES, BUTTONS AND STATUSES */
@@ -515,18 +518,9 @@ button.bg-\[\#1F5F98\] *,
 }
 
 /* 9.3 Global Button Hover Transform */
-button {
-  transition: all 0.2s ease-in-out !important;
-}
-
-button:hover {
-  background-color: #F68B2D !important;
-  color: #ffffff !important;
-  border-color: #F68B2D !important;
-}
-
-button:hover * {
-  color: #ffffff !important;
+#main-content-pane button {
+  transform-origin: center;
+  transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out, box-shadow 0.2s ease-in-out !important;
 }
 
 /* 9.4 Header Profile & Notification Icon Controls */
@@ -1031,4 +1025,140 @@ svg line,
 svg rect,
 svg path {
   outline: none !important;
+}
+
+/* ==========================================
+   14. Main Content Text Color Outside Sidebar
+   ========================================== */
+#main-content-pane,
+#main-content-pane :where(div, p, span, td, th, label, li, h1, h2, h3, h4, h5, h6, a, small, strong, select, input, textarea, option) {
+  color: #0c4275 !important;
+}
+
+/* ==========================================
+   15. Two-Color Button System Outside Sidebar
+   ========================================== */
+#main-content-pane {
+  --brand-button-primary: #F68B2D;
+  --brand-button-secondary: #154A7D;
+}
+
+#main-content-pane button,
+#main-content-pane button * {
+  font-weight: 500 !important;
+}
+
+#main-content-pane button:not(.header-icon-action) {
+  border-color: rgba(21, 74, 125, 0.45) !important;
+  color: var(--brand-button-secondary) !important;
+}
+
+#main-content-pane button:not(.header-icon-action)[class^="bg-"],
+#main-content-pane button:not(.header-icon-action)[class*=" bg-"] {
+  background-color: var(--brand-button-secondary) !important;
+  border-color: var(--brand-button-secondary) !important;
+  color: #ffffff !important;
+}
+
+#main-content-pane button:not(.header-icon-action)[class^="bg-"] *,
+#main-content-pane button:not(.header-icon-action)[class*=" bg-"] * {
+  color: #ffffff !important;
+}
+
+#main-content-pane button:not(.header-icon-action):is(
+  [type="submit"],
+  [id*="add"],
+  [id*="submit"],
+  [id*="reject"],
+  [id*="delete"],
+  [id*="remove"],
+  [class^="bg-amber"],
+  [class*=" bg-amber"],
+  [class^="bg-red"],
+  [class*=" bg-red"],
+  [class^="bg-rose"],
+  [class*=" bg-rose"],
+  [class^="bg-[#F68B2D]"],
+  [class*=" bg-[#F68B2D]"],
+  [class*=" ring-1"],
+  [class*=" ring-2"]
+) {
+  background-color: var(--brand-button-primary) !important;
+  border-color: var(--brand-button-primary) !important;
+  color: #ffffff !important;
+}
+
+#main-content-pane button:not(.header-icon-action):is(
+  [type="submit"],
+  [id*="add"],
+  [id*="submit"],
+  [id*="reject"],
+  [id*="delete"],
+  [id*="remove"],
+  [class^="bg-amber"],
+  [class*=" bg-amber"],
+  [class^="bg-red"],
+  [class*=" bg-red"],
+  [class^="bg-rose"],
+  [class*=" bg-rose"],
+  [class^="bg-[#F68B2D]"],
+  [class*=" bg-[#F68B2D]"],
+  [class*=" ring-1"],
+  [class*=" ring-2"]
+) * {
+  color: #ffffff !important;
+}
+
+#main-content-pane button:not(.header-icon-action):not([class^="bg-"]):not([class*=" bg-"]):is(
+  [id*="delete"],
+  [id*="remove"],
+  [class*="text-red"],
+  [class*="hover:text-red"],
+  [class*="text-rose"],
+  [class*="hover:text-rose"]
+) {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  color: var(--brand-button-primary) !important;
+}
+
+#main-content-pane button:not(.header-icon-action):not([class^="bg-"]):not([class*=" bg-"]):is(
+  [id*="delete"],
+  [id*="remove"],
+  [class*="text-red"],
+  [class*="hover:text-red"],
+  [class*="text-rose"],
+  [class*="hover:text-rose"]
+) * {
+  color: var(--brand-button-primary) !important;
+}
+
+#main-content-pane header .header-profile-menu-item-blue,
+#main-content-pane header .header-profile-menu-item-blue * {
+  color: var(--brand-button-secondary) !important;
+}
+
+#main-content-pane header .header-profile-menu-item-red,
+#main-content-pane header .header-profile-menu-item-red * {
+  color: var(--brand-button-primary) !important;
+}
+
+/* ==========================================
+   16. Scale-Only Button Hover Outside Sidebar
+   ========================================== */
+#main-content-pane button:not(:disabled):hover {
+  background-color: var(--button-hover-bg) !important;
+  border-color: var(--button-hover-border) !important;
+  box-shadow: var(--button-hover-shadow) !important;
+  color: var(--button-hover-color) !important;
+  opacity: var(--button-hover-opacity) !important;
+  transform: scale(1.045) !important;
+}
+
+#main-content-pane button:not(:disabled):hover * {
+  color: var(--button-child-hover-color, inherit) !important;
+}
+
+#main-content-pane button:disabled:hover {
+  transform: none !important;
 }

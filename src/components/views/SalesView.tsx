@@ -621,27 +621,27 @@ export default function SalesView({
                 <div className="space-y-6">
                   {/* Select Platform Buttons */}
                   <div>
-                    <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Publisher Platform</label>
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                    <label className="block text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5">Publisher Platform</label>
+                    <div className="flex flex-wrap gap-2">
                       {(['Facebook', 'TikTok', 'Google', 'Snapchat'] as PlatformType[]).map((p) => {
                         const isSelected = platform === p;
                         let themeBtnStyles = '';
 
                         if (p === 'Facebook') {
                           themeBtnStyles = isSelected
-                            ? 'bg-[#1877F2] text-white border-[#1877F2] shadow-md ring-2 ring-slate-900 dark:ring-white ring-offset-2 scale-[1.02] font-black'
+                            ? 'bg-[#1877F2] text-white border-[#1877F2] shadow-sm ring-1 ring-slate-900 dark:ring-white ring-offset-1 font-black'
                             : 'bg-[#1877F2] text-white border-[#1877F2]/80 opacity-85 hover:opacity-100 font-bold shadow-xs';
                         } else if (p === 'TikTok') {
                           themeBtnStyles = isSelected
-                            ? 'bg-[#FE2C55] text-white border-[#FE2C55] shadow-md ring-2 ring-slate-900 dark:ring-white ring-offset-2 scale-[1.02] font-black'
+                            ? 'bg-[#FE2C55] text-white border-[#FE2C55] shadow-sm ring-1 ring-slate-900 dark:ring-white ring-offset-1 font-black'
                             : 'bg-[#FE2C55] text-white border-[#FE2C55]/80 opacity-85 hover:opacity-100 font-bold shadow-xs';
                         } else if (p === 'Google') {
                           themeBtnStyles = isSelected
-                            ? 'bg-[#22C55E] text-white border-[#16A34A] shadow-md ring-2 ring-slate-900 dark:ring-white ring-offset-2 scale-[1.02] font-black'
+                            ? 'bg-[#22C55E] text-white border-[#16A34A] shadow-sm ring-1 ring-slate-900 dark:ring-white ring-offset-1 font-black'
                             : 'bg-[#4ADE80] text-slate-950 border-[#22C55E] opacity-90 hover:opacity-100 font-bold shadow-xs';
                         } else if (p === 'Snapchat') {
                           themeBtnStyles = isSelected
-                            ? 'bg-[#FFFC00] text-slate-950 border-[#EAB308] shadow-md ring-2 ring-slate-900 dark:ring-white ring-offset-2 scale-[1.02] font-black'
+                            ? 'bg-[#FFFC00] text-slate-950 border-[#EAB308] shadow-sm ring-1 ring-slate-900 dark:ring-white ring-offset-1 font-black'
                             : 'bg-[#FACC15] text-slate-950 border-[#EAB308] opacity-90 hover:opacity-100 font-bold shadow-xs';
                         }
 
@@ -650,7 +650,7 @@ export default function SalesView({
                             key={p}
                             type="button"
                             onClick={() => setSelectedPlatform(p)}
-                            className={`py-2 px-3 rounded-xl border text-xs transition-all text-center flex items-center justify-center gap-1.5 cursor-pointer ${themeBtnStyles}`}
+                            className={`min-h-[28px] min-w-[90px] sm:min-w-[104px] py-1.5 px-2.5 rounded-lg border text-[10px] leading-none transition-all text-center flex items-center justify-center gap-1 cursor-pointer active:scale-[0.98] ${themeBtnStyles}`}
                           >
                             <span className="truncate">{p}</span>
                           </button>
@@ -693,7 +693,7 @@ export default function SalesView({
                     const totalBDT = matchingInvoices.reduce((sum, inv) => sum + inv.totalAmountBDT, 0);
                     
                     return (
-                      <div className="p-3.5 rounded-xl border border-sky-200 dark:border-sky-800 space-y-2 text-[11px] bg-sky-50 dark:bg-sky-950/40">
+                      <div className="p-3.5 rounded-xl border border-sky-200 dark:border-sky-800 space-y-2 text-[11px] bg-transparent dark:bg-transparent">
                         <div className="flex justify-between items-center pb-1.5 border-b border-sky-200/80 dark:border-sky-800/80">
                           <span className="text-sky-800 dark:text-sky-300 font-medium">BM Hub:</span>
                           <span className="font-bold text-sky-950 dark:text-sky-100">{activeAccount.bmName || "AdsBuzz Partner"}</span>
@@ -712,11 +712,11 @@ export default function SalesView({
                           </div>
                           
                           <div className="grid grid-cols-2 gap-2 text-center">
-                            <div className="bg-[#E0F2FE] dark:bg-sky-900/60 p-2.5 rounded-lg border border-sky-200 dark:border-sky-700/60 shadow-xs">
+                            <div className="bg-transparent dark:bg-transparent p-2.5 rounded-lg border border-sky-200 dark:border-sky-700/60 shadow-xs">
                               <p className="text-[9px] text-sky-800 dark:text-sky-300 font-bold uppercase tracking-wider">Total USD Top-up</p>
                               <p className="text-xs font-black text-sky-950 dark:text-white mt-0.5">${totalUSD.toLocaleString()}</p>
                             </div>
-                            <div className="bg-[#E0F2FE] dark:bg-sky-900/60 p-2.5 rounded-lg border border-sky-200 dark:border-sky-700/60 shadow-xs">
+                            <div className="bg-transparent dark:bg-transparent p-2.5 rounded-lg border border-sky-200 dark:border-sky-700/60 shadow-xs">
                               <p className="text-[9px] text-sky-800 dark:text-sky-300 font-bold uppercase tracking-wider">Total BDT Spent</p>
                               <p className="text-xs font-black text-sky-950 dark:text-white mt-0.5">৳{totalBDT.toLocaleString()}</p>
                             </div>
